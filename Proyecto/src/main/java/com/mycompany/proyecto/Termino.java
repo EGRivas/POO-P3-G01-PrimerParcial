@@ -9,5 +9,26 @@ package com.mycompany.proyecto;
  * @author Administrador
  */
 public class Termino {
-    
+    //variables de instancia
+    private String anio;
+    private String periodo;
+    //constructor
+    public Termino(String anio, String periodo){
+        this.anio = anio;
+        this.periodo = periodo;
+    }
+    //getters
+    public String getAnio(){
+        return anio;
+    }
+    public String getPeriodo(){
+        return periodo;
+    }
+    //setters
+    public void setAnio(String anio){
+        this.anio = anio;
+    }
+    public void setPeriodo(String periodo){
+        this.periodo = periodo;
+    }
 }
