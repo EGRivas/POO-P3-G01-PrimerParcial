@@ -12,6 +12,8 @@ public class Termino {
     //variables de instancia
     private String anio;
     private String periodo;
+    private ArrayList<Materia> materias;
+
     //constructor
     public Termino(String anio, String periodo){
         this.anio = anio;
