@@ -6,8 +6,9 @@ public class Materia{
     private String nombre;
     private int cantidadNiveles;
     private ArrayList<Paralelo> paralelos;
+    private ArrayList<Pregunta> preguntas;
 
-    private Materia(String codigo, String nombre, int cantidadNiveles, ArrayList<Paralelo> paralelos){
+    public Materia(String codigo, String nombre, int cantidadNiveles, ArrayList<Paralelo> paralelos){
         this.codigo = codigo;
         this.nombre = nombre;
         this.cantidadNiveles = cantidadNiveles;
@@ -25,7 +26,13 @@ public class Materia{
     public void editarMateria(ArrayList<Paralelo> paralelos){
         this.paralelos = paralelos;
     }
-
+    public void agregarPregunta(Pregunta pregunta){
+        preguntas.add(pregunta);
+    }
+    public void eliminarPregunta(Pregunta pregunta){
+        int x preguntas.indexof(pregunta);
+        preguntas.remove(x);
+    }
 
 
 

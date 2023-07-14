@@ -22,7 +22,4 @@ public class Pregunta{
     public String IndicarRespuestaCorrecta(){
         return respuestaCorrecta;
     }
-public void agregarPregunta(String p){
-listaRespuestas.add(p)
-}
 }
