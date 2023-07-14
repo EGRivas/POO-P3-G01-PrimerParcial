@@ -27,10 +27,27 @@ public class Menu{
                 }
             }
             else if (num = 2){
-
+                System.out.println("Indique el año nuevo:");
+                String a = sc.nextLine();
+                System.out.println("Indique el periodo nuevo:");
+                String p = sc.nextLine();
+                System.out.println("Indique el año antiguo:");
+                String a1 = sc.nextLine();
+                System.out.println("Indique el periodo antiguo:");
+                String p1 = sc.nextLine();
+                for (Termino t1: terminos){
+                    if (t1.getAnio().equals(a1) && t1.getPeriodo().equals(p1)){
+                        t1.setAnio(a);
+                        t1.setPeriodo(p);
+                    }
+                }
             }
             else{
-
+                System.out.println("Indique el año nuevo:");
+                String a = sc.nextLine();
+                System.out.println("Indique el periodo nuevo:");
+                String p = sc.nextLine();
+                this.setTermino(a,p);
             }
         }
     }   

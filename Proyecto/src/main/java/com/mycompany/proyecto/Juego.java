@@ -3,13 +3,15 @@ import java.util.Arrylist;
 
 public class Juego{
 //Atributos:
-    private Materia materia;
-    private Paralelo paralelo;
-
+    private Termino termino;
 
 //Constructor:
-    public Juego(Materia m, Paralelo p){
-        paralelo = p;
-        materia = m;
+    public Juego(Termio t){
+        termino = t;
+    }
+//Método:
+    public void setTermino(String anio, String periodo){
+        this.setAnio(anio);
+        this.setPerido(preiodo);
     }
 }
