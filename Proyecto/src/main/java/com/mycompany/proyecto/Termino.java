@@ -18,6 +18,7 @@ public class Termino {
     public Termino(String anio, String periodo){
         this.anio = anio;
         this.periodo = periodo;
+        this.materia = new ArrayList<Materia>;
     }
     //getters
     public String getAnio(){
@@ -25,6 +26,9 @@ public class Termino {
     }
     public String getPeriodo(){
         return periodo;
+    }
+    public ArrayList<Materia> getMaterias(){
+        return materias;
     }
     //setters
     public void setAnio(String anio){
