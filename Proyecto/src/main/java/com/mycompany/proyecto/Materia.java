@@ -37,4 +37,8 @@ public class Materia{
         int x = preguntas.indexOf(pregunta);
         preguntas.remove(x);
     }
+
+    public ArrayList<Paralelo> getParalelos() {
+        return paralelos;
+    }
 }
