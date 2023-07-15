@@ -18,7 +18,6 @@ public class Juego{
 
     public Estudiante ayudante(String matriculaEstudiante){
         Arraylist<Materia> materias = termino.getMaterias();
-        ArrayList<Estudiante> estudiantes;
         for (Materia m: materias){
             for(Paralelo p0: m.getParalelos()){
                 for(Estudiante e: p0.getEstudiantes()) {
@@ -36,7 +35,6 @@ public class Juego{
 
     public Estudiante participante(String matriculaEstudiante){
         Arraylist<Materia> materias = termino.getMaterias();
-        ArrayList<Estudiante> estudiantes;
         for (Materia m: materias){
             for(Paralelo p0: m.getParalelos()){
                 for(Estudiante e: p0.getEstudiantes()) {
