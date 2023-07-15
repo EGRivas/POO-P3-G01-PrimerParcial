@@ -20,35 +20,36 @@ public class Juego{
         Arraylist<Materia> materias = termino.getMaterias();
         ArrayList<Estudiante> estudiantes;
         for (Materia m: materias){
-            paralelos.add(m.getParalelos());
-        }
-        for(Paralelo p: paralelos){
-            estudiantes.add(p.getEstudiantes());
-        }
+            for(Paralelo p0: m.getParalelos()){
+                for(Estudiante e: p0.getEstudiantes()) {
+                    if (e.getMatricula().equals(matriculaEstudiante)) {
+                        return e;
+                    }
 
-        for(Estudiante e: estudiantes){
-            if(e.getMatricula().equals(matriculaEstudiante)){
-                return e;
+                }
             }
+
         }
         return null;
     }
+
 
     public Estudiante participante(String matriculaEstudiante){
         Arraylist<Materia> materias = termino.getMaterias();
         ArrayList<Estudiante> estudiantes;
         for (Materia m: materias){
-            paralelos.add(m.getParalelos());
-        }
-        for(Paralelo p: paralelos){
-            estudiantes.add(p.getEstudiantes());
-        }
+            for(Paralelo p0: m.getParalelos()){
+                for(Estudiante e: p0.getEstudiantes()) {
+                    if (e.getMatricula().equals(matriculaEstudiante)) {
+                        return e;
+                    }
 
-        for(Estudiante e: estudiantes){
-            if(e.getMatricula().equals(matriculaEstudiante)){
-                return e;
+                }
             }
+
         }
         return null;
     }
+
+
 }
