@@ -37,4 +37,6 @@ public class Termino {
     public void setPeriodo(String periodo){
         this.periodo = periodo;
     }
+    //metodo equals
+    
 }
