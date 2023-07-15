@@ -12,6 +12,7 @@ public class Menu{
         while(num != 4){
             System.out.println("Escoja la opción que desee\n 1. Ingresar Término\n 2. Editar Término\n 3. Configurar término para el juego\n 4. Salir\n Ingrese el número de su opción:");
             num = sc.nextInt();
+            sc.nextLine();
             if (num == 1){
                 System.out.println("Indique el año:");
                 String a = sc.nextLine();
@@ -58,6 +59,7 @@ public class Menu{
         Scanner sc = new Scanner(System.in);
         System.out.println("Escoja la opción que desee\n 1. Administrar términos académicos\n 2. Administrar materias y paralelos\n 3. Administrar preguntas\n 4. Salir\n Ingrese el número de su opción:");
         int num = sc.nextInt();
+        sc.nextLine();
         if (num == 1){
             administrarTerminosAcademicos();
         }
@@ -75,6 +77,7 @@ public class Menu{
         Scanner sc = new Scanner(System.in);
         System.out.println("Escoja la opción que desee\n 1. Configuración\n 2. Nuevo Juego\n 3. Reporte\n 4. Salir\n Ingrese el número de su opción:");
         int num = sc.nextInt();
+        sc.nextLine();
         if (num == 1){
             configuracion();
         }
