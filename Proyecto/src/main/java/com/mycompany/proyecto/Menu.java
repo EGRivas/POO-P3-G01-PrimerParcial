@@ -1,5 +1,6 @@
 package com.mycompany.proyecto;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Menu{
 //Lista con los términos:

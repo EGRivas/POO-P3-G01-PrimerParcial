@@ -1,17 +1,17 @@
 package com.mycompany.proyecto;
-import java.util.Arrylist;
+import java.util.ArrayList;
 
 public class Juego{
 //Atributos:
     private Termino termino;
 
 //Constructor:
-    public Juego(Termio t){
+    public Juego(Termino t){
         termino = t;
     }
 //Método:
     public void setTermino(String anio, String periodo){
-        this.setAnio(anio);
-        this.setPerido(preiodo);
+        Termino.setAnio(anio);
+        Termino.setPeriodo(periodo);
     }
 }

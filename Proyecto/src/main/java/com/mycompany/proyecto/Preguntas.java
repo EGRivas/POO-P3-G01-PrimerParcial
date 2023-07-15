@@ -1,7 +1,7 @@
 package com.mycompany.proyecto;
 import java.util.ArrayList;
 
-public class Pregunta{
+public class Preguntas{
 
 //Atributos:
     private String enunciado;
@@ -11,15 +11,18 @@ public class Pregunta{
     private TipoComodin comodin;
 
 //Constructor:
-    public Pregunta(String e,int n,String rCorrecta, ArrayList<String> resp){
+    public Preguntas(String e, int n, ArrayList<String> lRespuestas, String rCorrecta){
         enunciado = e;
         nivel = n;
-        listaRespuestas = resp;
+        listaRespuestas = lRespuestas;
         respuestaCorrecta = rCorrecta;
     }
 
 //Métodos:
     public String IndicarRespuestaCorrecta(){
         return respuestaCorrecta;
+    }
+    public TipoComodin getComodin(){
+        return comodin;
     }
 }

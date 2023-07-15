@@ -7,7 +7,7 @@ public class Materia{
     private String nombre;
     private int cantidadNiveles;
     private ArrayList<Paralelo> paralelos;
-    private ArrayList<Pregunta> preguntas;
+    private ArrayList<Preguntas> preguntas;
 
 //Constructor:
     public Materia(String codigo, String nombre, int cantidadNiveles, ArrayList<Paralelo> paralelos){
@@ -29,15 +29,12 @@ public class Materia{
         this.paralelos = paralelos;
     }
 //Método para agregar preguntas en la lista de preguntas:
-    public void agregarPregunta(Pregunta pregunta){
+    public void agregarPregunta(Preguntas pregunta){
         preguntas.add(pregunta);
     }
 //Método para eliminar materias en la lista de preguntas:
-    public void eliminarPregunta(Pregunta pregunta){
-        int x preguntas.indexof(pregunta);
+    public void eliminarPregunta(Preguntas pregunta){
+        int x = preguntas.indexOf(pregunta);
         preguntas.remove(x);
     }
-
-
-
 }

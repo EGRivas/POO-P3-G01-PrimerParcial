@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.proyecto;
-
+import java.util.ArrayList;
 /**
  *
  * @author Administrador
@@ -18,7 +18,7 @@ public class Termino {
     public Termino(String anio, String periodo){
         this.anio = anio;
         this.periodo = periodo;
-        this.materia = new ArrayList<Materia>;
+        materias = new ArrayList<Materia>();
     }
     //getters
     public String getAnio(){
