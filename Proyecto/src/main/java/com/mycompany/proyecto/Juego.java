@@ -3,12 +3,13 @@ import java.util.ArrayList;
 
 public class Juego{
 //Atributos:
-    static Termino termino;
-    ArrayList<Paralelo> paralelos;
+    private static Termino termino;
+    private ArrayList<Paralelo> paralelos;
+
 
 //Constructor:
-    public Juego(Termino t){
-        termino = t;
+    public Juego(){
+
     }
 //Método:
     public static void setTermino(String anio, String periodo){
@@ -48,6 +49,8 @@ public class Juego{
         }
         return null;
     }
+    public void empezarJuego(){
 
+    }
 
 }

@@ -25,6 +25,9 @@ public class Preguntas{
     public TipoComodin getComodin(){
         return comodin;
     }
+    public String getEnunciado(){
+        return enunciado;
+    }
 //Metodo toString
     public String toString(){
         return "enunciado: "+enunciado+"\nnivel: "+nivel;

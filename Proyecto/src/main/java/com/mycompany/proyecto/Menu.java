@@ -6,6 +6,10 @@ public class Menu{
 //Lista con los términos:
     private static ArrayList<Termino> terminos;
     private static ArrayList<Materia> materias;
+    private static ArrayList<Paralelo> paralelos;
+    private static ArrayList<Preguntas> preguntas;
+    private static Juego juego;
+    private static ArrayList<Juego> juegos;
 //Métodos:
     public static void administrarTerminosAcademicos(){
         //listado de terminos academicos
@@ -56,19 +60,33 @@ public class Menu{
                 String a = sc.nextLine();
                 System.out.println("Indique el periodo para el juego:");
                 String p = sc.nextLine();
-                Juego.setTermino(a,p);
+                setTermino(a,p);
             }
         }
         sc.close();
     }
     public static void administrarMateriasParalelos(){
         //listado de materias y paralelos
+        for (Termino t: terminos){
+            materias = new ArrayList<Materia>();
+            materias.addAll(t.getMaterias());
+        }
+        for (Materia m: materias){
+            paralelos = new ArrayList<Paralelo>();
+            paralelos.addAll(m.getParalelos);
+        }
+        System.out.println("MATERIAS:");
         System.out.print("[");
         for (Materia c : materias){
             System.out.println(c);
         }
         System.out.println("]");
-        
+        System.out.println("PARALELOS:");
+        System.out.print("[");
+        for (Paralelo g : paralelos){
+            System.out.println(g);
+        }
+        System.out.println("]");  
         
         Scanner sc = new Scanner(System.in);
         int num = 0;
@@ -84,47 +102,103 @@ public class Menu{
                 System.out.println("Ingrese cantidad de niveles: ");
                 int nivelesM = sc.nextInt();
                 sc.nextLine();
-                
-                Materia m = new Materia(codigoM,nombreM,nivelesM);
-                materias.add(m);
+                System.out.println("Ingrese el año del termino donde quiere agregar la materia: ");
+                String anioT = sc.nextLine();
+                System.out.println("Ingrese el periodo del termino donde quiere agregar la materia: ");
+                String perT = sc.nextLine();
+                Termino t1 = new Termino(anioT,perT);
+                for (Termino t: terminos){
+                    if(t.equals(t1)){
+                        materias = t1.getMateria();
+                        materias.add(new Materia(codigoM,nombreM,nivelesM));
+                    }
+                }                
+
                 
             } else if (num == 2){
                 System.out.println("Ingrese codigo de materia: ");
                 String codigoM = sc.nextLine();
-                for (Materia m : materias){
-                    if (m.getCodigo().equals(codigoM)){
-                        System.out.println("Materia a editar: "+m);
-                        System.out.println("Ingrese nombre a cambiar: ");
-                        String nombreM = sc.nextLine();
-                        System.out.println("Ingrese cantidad de niveles a cambiar: ");
-                        int nivelesM = sc.nextInt();
-                        m.editarMateria(codigoM,nombreM);
-                        m.editarMateria(nivelesM);
+                System.out.println("Ingrese el año del termino donde quiere editar la materia: ");
+                String anioT = sc.nextLine();
+                System.out.println("Ingrese el periodo del termino donde quiere editar la materia: ");
+                String perT = sc.nextLine();
+                String codigoM = sc.nextLine();
+                Termino t1 = new Termino(anioT,perT);
+                for (Termino t: terminos){
+                    if(t.equals(t1)){
+                        materias = t1.getMaterias();
+                        for (Materia m : materias){
+                            if (m.getCodigo().equals(codigoM)){
+                                System.out.println("Materia a editar: "+m);
+                                System.out.println("Ingrese nombre a cambiar: ");
+                                String nombreM = sc.nextLine();
+                                System.out.println("Ingrese cantidad de niveles a cambiar: ");
+                                int nivelesM = sc.nextInt();
+                                m.editarMateria(codigoM,nombreM);
+                                m.editarMateria(nivelesM);
+                            }
+                        }
                     }
                 }
             } else if (num == 3){
                 System.out.println("Ingrese codigo de materia: ");
                 String codigoM = sc.nextLine();
-                
-                /*System.out.println("Indique el año del termino:");
-                String a = sc.nextLine();
-                System.out.println("Indique el periodo del termino:");
-                String p = sc.nextLine();
-                Termino term = new Termino(a,p);
-                */
-                for (Materia m : materias){
-                    if (m.getCodigo().equals(codigoM)){
-                        System.out.println("Ingrese numero de paralelo: ");
-                        String numeroP = sc.nextLine();
-                        Paralelo pa = new Paralelo(numeroP);
-                        m.aggParalelo(pa);
-                        
+                System.out.println("Ingrese el año del termino donde quiere agregar paralelo: ");
+                String anioT = sc.nextLine();
+                System.out.println("Ingrese el periodo del termino donde quiere agregar paralelo: ");
+                String perT = sc.nextLine();
+                Termino t1 = new Termino(anioT,perT);
+                for (Termino t: terminos){
+                    if(t.equals(t1)){
+                        materias = t1.getMaterias();
+                        for (Materia m : materias){
+                            if (m.getCodigo().equals(codigoM)){
+                                System.out.println("Ingrese numero de paralelo: ");
+                                String numeroP = sc.nextLine();
+                                Paralelo pa = new Paralelo(numeroP);
+                                m.aggParalelo(pa);
+
+                            }
+                        }
                     }
                 }
-            } else{
-                //opcion para eliminar paralelo
+            } 
+            else{
+                System.out.println("Ingrese codigo de materia: ");
+                String codigoM = sc.nextLine();
+                System.out.println("Ingrese el año del termino donde quiere eliminar paralelo: ");
+                String anioT = sc.nextLine();
+                System.out.println("Ingrese el periodo del termino donde quiere eliminar paralelo: ");
+                String perT = sc.nextLine();
+                System.out.println("PARALELOS:");
+                System.out.print("[");
+                for (Paralelo g : paralelos){
+                    System.out.println(g);
+                }
+                System.out.println("]"); 
+                Termino t1 = new Termino(anioT,perT);
+                for (Termino t: terminos){
+                    if(t.equals(t1)){
+                        materias = t1.getMaterias();
+                        for (Materia m : materias){
+                            if (m.getCodigo().equals(codigoM)){
+                                System.out.println("Ingrese numero de paralelo: ");
+                                String numeroP = sc.nextLine();
+                                paralelos = m.getParalelos();
+                                for(Paralelo p:paralelos){
+                                    if(numeroP.equals(p.getNumero())){
+                                        int x = paralelos.indexOf(p);
+                                        paralelos.remove(x);
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
             }
         }
+        sc.close();
     }
     
     public static void administrarPreguntas(){
@@ -134,6 +208,10 @@ public class Menu{
             System.out.println("Escoja la opción que desee\n 1. Administrar términos académicos\n 2. Administrar materias y paralelos\n 3. Administrar preguntas\n 4. Regresar\n Ingrese el número de su opción:");
             num = sc.nextInt();
             sc.nextLine();
+        for (Termino t: terminos){
+            materias = new ArrayList<Materia>();
+            materias.addAll(t.getMaterias());
+        }
             if (num==1){
                 System.out.println("Ingrese codigo de materia: ");
                 String codigoM = sc.nextLine();
@@ -182,9 +260,23 @@ public class Menu{
                     }
                 }
             } else{
-                //eliminar pregunta
+                System.out.println("Ingrese el enunciado de la pregunta a eliminar:")
+                String e = sc.nextLine();
+                for(Materia m:materias){
+                    preguntas = m.getPreguntas();
+                    for (Pregutnas p : preguntas){
+                        if(e.equals(p.getEnunciado)){
+                            int h = preguntas.indexOf(p);
+                            preguntas.remove(h);
+                        }
+                    }
+                }
+
+
+
             }
         }
+        sc.close();
     }
     
     public static void configuracion(){
@@ -204,6 +296,7 @@ public class Menu{
                 administrarPreguntas();
             }
         }
+        sc.close()
     }
     
     public static void menuInicial(){
@@ -217,11 +310,24 @@ public class Menu{
                 configuracion();
             }
             else if (num == 2){
-                
+                System.out.println("Ingrese el año del termino con el que quiere empezar ek n uevo juego:");
+                String a = sc.nextLine();
+                System.out.println("Ingrese el periodo del termino con el que quiere empezae el nuevo juego:");
+                Strin p = sc.nextLine();
+                for(Termino t: terminos){
+                    Termino t1 = new Termino(a,p);
+                    if (t.equals(t1)){
+                        Juego j = new Juego(t);
+                        j.empezarJuego();
+                        juegos.add(j);
+                    }
+                }
+
             }
             else{
                 
             }
         }
+        sc.close();
     }
 }
