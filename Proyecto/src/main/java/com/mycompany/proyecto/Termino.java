@@ -38,5 +38,13 @@ public class Termino {
         this.periodo = periodo;
     }
     //metodo equals
-    
+    public boolean equals(Object o){
+        if (o == this) return true;
+        if (o != null && getClass() == o.getClass()){
+            Termino term = (Termino) o;
+            return (anio.equals(term.anio)) && (periodo.equals(term.periodo));
+        } else {
+            return false;
+        }
+    }
 }

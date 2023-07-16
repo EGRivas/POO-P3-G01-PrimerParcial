@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Juego{
 //Atributos:
     static Termino termino;
-    Arraylist<Paralelo> paralelos;
+    ArrayList<Paralelo> paralelos;
 
 //Constructor:
     public Juego(Termino t){
@@ -17,7 +17,7 @@ public class Juego{
     }
 
     public Estudiante ayudante(String matriculaEstudiante){
-        Arraylist<Materia> materias = termino.getMaterias();
+        ArrayList<Materia> materias = termino.getMaterias();
         for (Materia m: materias){
             for(Paralelo p0: m.getParalelos()){
                 for(Estudiante e: p0.getEstudiantes()) {
@@ -34,7 +34,7 @@ public class Juego{
 
 
     public Estudiante participante(String matriculaEstudiante){
-        Arraylist<Materia> materias = termino.getMaterias();
+        ArrayList<Materia> materias = termino.getMaterias();
         for (Materia m: materias){
             for(Paralelo p0: m.getParalelos()){
                 for(Estudiante e: p0.getEstudiantes()) {

@@ -22,10 +22,7 @@ public class Menu{
                 int tAnio = Integer.parseInt(t.getAnio());
                 
                 for (Termino t1: terminos){
-                    if ((t1.getAnio().equals(t.getAnio()) && t1.getPeriodo().equals(t.getPeriodo())) || tAnio < 2023){
-                        break;
-                    }
-                    else{
+                    if (!t1.equals(t) && tAnio >= 2023){
                         terminos.add(t);
                     }
                 }
