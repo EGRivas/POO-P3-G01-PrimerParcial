@@ -303,6 +303,7 @@ public class Menu{
         Scanner sc = new Scanner(System.in);
         int num = 0;
         while(num != 4){
+
             System.out.println("Escoja la opción que desee\n 1. Configuración\n 2. Nuevo Juego\n 3. Reporte\n 4. Salir\n Ingrese el número de su opción:");
             num = sc.nextInt();
             sc.nextLine();
@@ -310,18 +311,29 @@ public class Menu{
                 configuracion();
             }
             else if (num == 2){
-                System.out.println("Ingrese el año del termino con el que quiere empezar ek n uevo juego:");
-                String a = sc.nextLine();
-                System.out.println("Ingrese el periodo del termino con el que quiere empezae el nuevo juego:");
-                Strin p = sc.nextLine();
-                for(Termino t: terminos){
-                    Termino t1 = new Termino(a,p);
-                    if (t.equals(t1)){
-                        Juego j = new Juego(t);
-                        j.empezarJuego();
-                        juegos.add(j);
+                for (Termino t: terminos){
+                    materias = new ArrayList<Materia>();
+                    materias.addAll(t.getMaterias());
+                }
+                for (Materia m: materias){
+                    paralelos = new ArrayList<Paralelo>();
+                    paralelos.addAll(m.getParalelos);
+                }
+                System.out.println("Ingrese el código de la materia con el que quiere empezar el juego:");
+                String m = sc.nextLine();
+                System.out.println("Ingrese el número del paralelo con el quiere empezar el nuevo juego:");
+                String p = sc.nextLine();
+                for(Materia m1: materias){
+                    if(m1.getCodigo().equals(m)){
+                        Materia materia = m1;
                     }
                 }
+                for(Paralelo p1 : paralelos){
+                    if(p1.getNumero().equals(p)){
+                        Paralelo paralelo = p1;
+                    }
+                }
+                
 
             }
             else{
