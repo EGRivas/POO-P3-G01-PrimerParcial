@@ -6,11 +6,12 @@ public class Paralelo {
     private String numero;
     private ArrayList<Estudiante> estudiantes;
 // Costructor:
-    private Paralelo(String numero){
+    public Paralelo(String numero){
         this.numero = numero;
+        estudiantes = new ArrayList<Estudiante>();
     }
 //Sobrecarga de constructor:
-    private Paralelo(String numero, ArrayList<Estudiante> estudiantes){
+    public Paralelo(String numero, ArrayList<Estudiante> estudiantes){
         this.numero = numero;
         this.estudiantes = estudiantes;
     }

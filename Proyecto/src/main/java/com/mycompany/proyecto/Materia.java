@@ -10,23 +10,39 @@ public class Materia{
     private ArrayList<Preguntas> preguntas;
 
 //Constructor:
-    public Materia(String codigo, String nombre, int cantidadNiveles, ArrayList<Paralelo> paralelos){
+    public Materia(String codigo, String nombre, int cantidadNiveles){
         this.codigo = codigo;
         this.nombre = nombre;
         this.cantidadNiveles = cantidadNiveles;
-        this.paralelos = paralelos;
+        paralelos = new ArrayList<Paralelo>();
+        preguntas = new ArrayList<Preguntas>();
+    }
+//getters
+    public String getCodigo(){
+        return codigo;
+    }
+    public String getNombre(){
+        return nombre;
+    }
+    public int getCantidadNiveles(){
+        return cantidadNiveles;
+    }
+    public ArrayList<Paralelo> getParalelos() {
+        return paralelos;
+    }
+    public ArrayList<Preguntas> getPreguntas(){
+        return preguntas;
     }
 //Métodos para editar datos de los objetos Materia que funcionan como setters:
-    public void editarMateria(String codigo, String nombre){
+    public void editarMateria(String nombre,String codigo){
         this.codigo = codigo;
         this.nombre = nombre;
     }
     public void editarMateria(int cantidadNiveles){
         this.cantidadNiveles = cantidadNiveles;
     }
-
-    public void editarMateria(ArrayList<Paralelo> paralelos){
-        this.paralelos = paralelos;
+    public void aggParalelo(Paralelo p){
+        paralelos.add(p);
     }
 //Método para agregar preguntas en la lista de preguntas:
     public void agregarPregunta(Preguntas pregunta){
@@ -37,8 +53,19 @@ public class Materia{
         int x = preguntas.indexOf(pregunta);
         preguntas.remove(x);
     }
-
-    public ArrayList<Paralelo> getParalelos() {
-        return paralelos;
+    
+//Metodo equals
+    /*public boolean equals(Object o){
+        if (o == this) return true;
+        if (o != null && getClass() == o.getClass()){
+            Materia mat = (Materia) o;
+            return (codigo.equals(mat.codigo)) || (codigo.equals(mat.codigo) && nombre.equals(mat.nombre));
+        } else {
+            return false;
+        }
+    }*/
+//Metodo toString
+    public String toString(){
+        return nombre + ", paralelos: " + paralelos;
     }
 }

@@ -47,4 +47,8 @@ public class Termino {
             return false;
         }
     }
+    //metodo toString
+    public String toString(){
+        return anio+"-"+periodo;
+    }
 }
