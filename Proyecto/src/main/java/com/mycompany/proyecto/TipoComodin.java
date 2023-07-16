@@ -1,7 +1,7 @@
 package com.mycompany.proyecto;
 
 public enum TipoComodin{
-    COMODINCOMPAÑERO,
+    COMODINCOMPANERO,
     COMODIN5050,
     COMODINCLASE;
 }

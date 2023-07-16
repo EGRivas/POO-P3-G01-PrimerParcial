@@ -6,6 +6,13 @@ public class Juego{
     private static Termino termino;
     private ArrayList<Paralelo> paralelos;
 
+    //agrego disponibilidad de comodines como variable de instancia
+
+    private int[] discomodines = {1, 1, 1};
+
+    TipoComodin[] comodines = TipoComodin.values();
+
+
 
 //Constructor:
     public Juego(){
@@ -66,7 +73,7 @@ public class Juego{
 
             // Verificar si se usará un comodín
             if (respuestaIngresada.equals("*")) {
-                mostrarComodinesDisponibles(); // Mostrar comodines disponibles (falta implementar)
+                mostrarComodinesDisponibles(); // Mostrar comodines disponibles
                 continue; // Volver a mostrar la misma pregunta
             }
 
@@ -92,6 +99,14 @@ public class Juego{
         sc.close();
     }
 
+    //revisar implementacion
+    pubic void mostrarComodinesDisponibles(){
+        for(int j; j < 3; j++){
+            if(discomodines[j] == 1){
+                System.out.println(comodines[j]);
+            }
 
+        }
+    }
 
 }
