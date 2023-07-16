@@ -201,6 +201,7 @@ public class Menu{
                 administrarMateriasParalelos();
             }
             else{
+                administrarPreguntas();
             }
         }
     }
