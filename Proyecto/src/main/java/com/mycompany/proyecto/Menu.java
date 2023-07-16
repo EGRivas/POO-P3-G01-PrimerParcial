@@ -10,6 +10,7 @@ public class Menu{
     private static ArrayList<Preguntas> preguntas;
     private static Juego juego;
     private static ArrayList<Juego> juegos;
+    private static ArrayList<Estudiante> estudiantes;
 //Métodos:
     public static void administrarTerminosAcademicos(){
         //listado de terminos academicos
@@ -333,11 +334,38 @@ public class Menu{
                         Paralelo paralelo = p1;
                     }
                 }
-                
+                System.out.println("Ingrese el número de matrícula del participante");
+                String matricula = sc.nextLine();
+                estudiantes = paralelo.getEstudiantes;
+                for(Estudiante e: estudiantes){
+                    if(e.getMatricula().equals(matricula)){
+                        Estudiante estudiante = e;
+                    }
+                } 
+                Juego j = new Juego(materia, paralelo, estudiante);
+                j.empezarJuego();
+                juegos.add(j);
 
             }
             else{
-                
+                System.out.println("Ingrese el codigo de la materia:")
+                String codMat = sc.nextLine();
+                System.out.println("Ingrese el numero del paralelo:")
+                String numPar = sc.nextLine();
+                System.out.println("Ingrese el año del termino:")
+                String anTer = sc.nextLine();
+                System.out.println("Ingrese el periodo del termino:")
+                String perTer = sc.nextLine();
+                for(Juego juego: juegos){
+                    if(juego.getCodigoMateria().equals(codMat) && juego.getNumParalelo().equals(numPar) && juego.getTermino().getAnio().equals(anTer) && juego.getTermino().getPeriodo().equals(perTer)){
+                    System.out.println("Fecha del juego: " + juego.getFecha());
+                    System.out.println("Participante: " + juego.getEstudiante());
+                    System.out.println("Nivel máximmo alcanzado: " + juego.getNivelAlcanzado());
+                    System.out.println("Canridad preguntas utilizadas: " + juego.getCantidadPreguntasUtilizadas());
+                    System.out.println("Número de comodines utilizados: " + juego.getComodinesUtilizados());
+                    System.out.println("Premio: " + juego.getPremio());
+                    }
+                }
             }
         }
         sc.close();

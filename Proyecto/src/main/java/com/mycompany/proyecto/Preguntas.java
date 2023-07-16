@@ -28,6 +28,9 @@ public class Preguntas{
     public String getEnunciado(){
         return enunciado;
     }
+    public int getNivel(){
+        return nivel;
+    }
 //Metodo toString
     public String toString(){
         return "enunciado: "+enunciado+"\nnivel: "+nivel;

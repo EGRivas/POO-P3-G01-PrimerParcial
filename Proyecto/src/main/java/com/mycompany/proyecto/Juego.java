@@ -1,22 +1,72 @@
 package com.mycompany.proyecto;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Juego{
 //Atributos:
     private static Termino termino;
+    private Materia materia;
+    private Paralelo paralelo;
     private ArrayList<Paralelo> paralelos;
+    private static int NumPreNivel;
+    private Estudiante participante;
+    private static Estudiante comApoyo
+    private ArrayList<Preguntas> preguntas;
+    private static String fecha;
+    private static int nivelAlcanzado;
+    private static int cantidadPreguntasContestadas;
+    private static int comodinesUtilizados;
+    private static int premio;
 
     //agrego disponibilidad de comodines como variable de instancia
 
     private int[] discomodines = {1, 1, 1};
 
-    TipoComodin[] comodines = TipoComodin.values();
+    private TipoComodin[] comodines = TipoComodin.values();
 
 
 
 //Constructor:
-    public Juego(){
+    public Juego(Materia m, Paralelo p, Estudiante par){
+        materia = m;
+        paralelo = p;
+        participante = par;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese la fecha en formato DD-MM-AA:");
+        fecha = sc.nextLine();
+        int x = 0;
+        int c = 0;
+        while(x!=10){
+            System.out.println("Ingrese el número de preguntas por nivel:");
+            int num = sc.nextInt();
+            preguntas = m.getPreguntas();
+            int cantidadNiveles = m.getCantidadNiveles;
+            int a = 0;
+            int i = 1;
 
+            while( i != cantidadNiveles) {
+                int b = 0;
+                for(Preguntas pre: preguntas){
+                    a = pre.getNivel();
+
+                    if(a == i){
+                        b++1
+                        if(num>b){
+                            i = cantidadNiveles;
+                        }
+
+                    }
+
+                }
+                i = i+1;
+                c = c+1;
+            }
+            if(c == cantidadNiveles){
+                NumPreNivel = num;
+                x = 10;
+            }
+
+        }
     }
 //Método:
     public static void setTermino(String anio, String periodo){
@@ -56,6 +106,7 @@ public class Juego{
         }
         return null;
     }
+
 
     public void empezarJuego(Materia m) {
 
@@ -108,5 +159,32 @@ public class Juego{
 
         }
     }
-
+//getters:
+    public String getCodigoMateria(){
+        return materia.getCodigo;
+    }
+    public String getNumParalelo(){
+        return paralelo.getNumero;
+    }
+    public Termino getTermino(){
+        return termino;
+    }
+    public String getFecha(){
+        return fecha;
+    }
+    public Estudiante getParticipante(){
+        return participante;
+    }
+    public int getNivelAlcanzado(){
+        return nivelAlcanzado;
+    }
+    public int getCantidadPreguntasContestadas(){
+        return cantidadPreguntasContestadas;
+    }
+    public int getComodinesUtilizados(){
+        return comodinesUtilizados;
+    }
+    public int getPremio(){
+        return premio;
+    }
 }
