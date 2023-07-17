@@ -167,7 +167,9 @@ public class Juego{
             int opcion = sc.nextInt();
             sc.nextLine();
             if(opcion == 1){
+
                 if(discomodines[0] == 1){
+                    comodinesUtilizados += 1;
                     discomodines[0] = 0;
                     System.out.println("Has usado tu comodin 1!");
                 } else {
@@ -175,6 +177,7 @@ public class Juego{
                 }
             } else if (opcion == 2) {
                 if(discomodines[1] == 1){
+                    comodinesUtilizados += 1;
                     discomodines[1] = 0;
                     System.out.println("Has usado tu comodin 2!");
                 } else {
@@ -182,6 +185,7 @@ public class Juego{
                 }
             } else if (opcion == 3) {
                 if(discomodines[2] == 1){
+                    comodinesUtilizados += 1;
                     discomodines[2] = 0;
                     System.out.println("Has usado tu comodin 3!");
                 } else {
