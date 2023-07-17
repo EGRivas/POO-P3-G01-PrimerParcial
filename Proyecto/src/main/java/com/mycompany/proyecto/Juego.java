@@ -144,7 +144,8 @@ public class Juego{
 
         // Obtener el premio ingresado por el profesor
         System.out.print("Ingrese el premio que has ganado: ");
-        String premio = sc.nextLine();
+        premio = sc.nextInt();
+        sc.nextLine();
 
         System.out.println("¡Felicidades! Has ganado: " + premio);
 
@@ -195,6 +196,7 @@ public class Juego{
                 System.out.println("Opción inválida. Debes ingresar 1, 2 o 3 para usar un comodín.");
             }
         }
+        sc.close();
 
     }
 //getters:
@@ -226,8 +228,6 @@ public class Juego{
         return premio;
     }
 
-    public String reporte(){
-        return "cantidad de preguntas contestadas: " + cantidadPreguntasContestadas + ", comodines utilizados: " + discomodines + ", Premio: " + premio;
-    }
+
 }
 
