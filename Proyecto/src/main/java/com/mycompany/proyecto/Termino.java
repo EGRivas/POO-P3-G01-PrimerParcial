@@ -47,6 +47,10 @@ public class Termino {
             return false;
         }
     }
+
+    public void setMaterias(ArrayList<Materia> m){
+        materias = m;
+    }
     //metodo toString
     public String toString(){
         return anio+"-"+periodo;

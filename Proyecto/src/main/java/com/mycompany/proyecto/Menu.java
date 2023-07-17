@@ -11,7 +11,20 @@ public class Menu{
     private static Juego juego;
     private static ArrayList<Juego> juegos;
     private static ArrayList<Estudiante> estudiantes;
+
 //Métodos:
+
+    public ArrayList<Termino> cargaListadoTermino(){
+        Termino t1 = new Termino("2023","1");
+        Termino t2 = new Termino("2023","2");
+        Termino t3 = new Termino("2022","2");
+        ArrayList<Termino> listado = new ArrayList<Termino>();
+        listado.add(t1);
+        listado.add(t2);
+        listado.add(t3);
+
+        return lista;
+    }
     public static void administrarTerminosAcademicos(){
         //listado de terminos academicos
         System.out.print("[");

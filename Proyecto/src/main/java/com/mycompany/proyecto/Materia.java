@@ -38,6 +38,9 @@ public class Materia{
         this.codigo = codigo;
         this.nombre = nombre;
     }
+    public void setListaParalelo(ArrayList<Paralelo> p){
+        paralelos = p;
+    }
     public void editarMateria(int cantidadNiveles){
         this.cantidadNiveles = cantidadNiveles;
     }
