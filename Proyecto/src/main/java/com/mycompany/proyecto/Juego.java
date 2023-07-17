@@ -109,34 +109,40 @@ public class Juego{
 
 
     public void empezarJuego(Materia m) {
-
         ArrayList<Preguntas> preguntasJuego = m.getPreguntas(); // Obtener las preguntas seleccionadas para el juego
         int numPreguntas = preguntasJuego.size();
         int preguntaActual = 0;
 
         while (preguntaActual < numPreguntas) {
-            Pregunta pregunta = preguntasJuego.get(preguntaActual);
-            mostrarPregunta(pregunta);
+            Preguntas pregunta = preguntasJuego.get(preguntaActual);
 
-            // Obtener la respuesta ingresada por el participante
-            System.out.print("Ingrese la letra de la respuesta (A, B, C o D), o * para usar un comodín: ");
-            String respuestaIngresada = sc.nextLine().toUpperCase();
+            // Verificar si el nivel de la pregunta es menor o igual al nivel alcanzado
+            if (pregunta.getNivel() <= nivelAlcanzado) {
+                System.out.println(pregunta.getEnunciado());
 
-            // Verificar si se usará un comodín
-            if (respuestaIngresada.equals("*")) {
-                mostrarComodinesDisponibles(); // Mostrar comodines disponibles
-                continue; // Volver a mostrar la misma pregunta
+                // Obtener la respuesta ingresada por el participante
+                System.out.print("Ingrese la letra de la respuesta (A, B, C o D), o * para usar un comodín: ");
+                String respuestaIngresada = sc.nextLine().toUpperCase();
+
+                // Verificar si se usará un comodín
+                if (respuestaIngresada.equals("*")) {
+                    mostrarComodinesDisponibles(); // Mostrar comodines disponibles
+                    continue; // Volver a mostrar la misma pregunta
+                }
+
+                // Verificar la respuesta ingresada
+                boolean respuestaCorrecta = pregunta.indicarRespuestaCorrecta(respuestaIngresada);
+                if (!respuestaCorrecta) {
+                    System.out.println("Respuesta incorrecta. Fin del juego.");
+                    return; // Terminar el juego si la respuesta es incorrecta
+                }
+                preguntaActual++;
+                cantidadPreguntasContestadas++;
+                nivelAlcanzado = cantidadPreguntasContestadas / NumPreNivel;
+            } else {
+                // La pregunta supera el nivel alcanzado, se salta a la siguiente pregunta
+                preguntaActual++;
             }
-
-            // Verificar la respuesta ingresada
-            boolean respuestaCorrecta = pregunta.indicarRespuestaCorrecta(respuestaIngresada);
-            if (!respuestaCorrecta) {
-                System.out.println("Respuesta incorrecta. Fin del juego.");
-                return; // Terminar el juego si la respuesta es incorrecta
-            }
-
-            preguntaActual++;
-            cantidadPreguntasContestadas = preguntaActual;
         }
 
         // Si el estudiante ha llegado hasta aquí, ha respondido correctamente todas las preguntas
@@ -151,6 +157,7 @@ public class Juego{
 
         sc.close();
     }
+
 
     //revisar implementacion
     pubic void mostrarComodinesDisponibles(){
