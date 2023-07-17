@@ -37,6 +37,9 @@ public class Termino {
     public void setPeriodo(String periodo){
         this.periodo = periodo;
     }
+    public void actuMaterias(ArrayList<Materia> m){
+        materias = m;
+    }
     //metodo equals
     public boolean equals(Object o){
         if (o == this) return true;

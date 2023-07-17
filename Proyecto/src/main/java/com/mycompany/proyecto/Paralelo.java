@@ -35,4 +35,7 @@ public class Paralelo {
     public void addEstudiante(Estudiante estudiante){
         estudiantes.add(estudiante);
     }
+    public String toString(){
+        return numero;
+    }
 }

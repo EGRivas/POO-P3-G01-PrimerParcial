@@ -17,10 +17,13 @@ public class Preguntas{
         listaRespuestas = lRespuestas;
         respuestaCorrecta = rCorrecta;
     }
+    public Preguntas(String e){
+        enunciado = e; //para verificar que una pregunta sea igual a otra en el metodo de remover preguntas
+    }
 
 //Métodos:
-    public String IndicarRespuestaCorrecta(){
-        return respuestaCorrecta;
+    public boolean indicarRespuestaCorrecta(String r){
+        return r.equals(respuestaCorrecta);
     }
     public TipoComodin getComodin(){
         return comodin;
@@ -31,8 +34,24 @@ public class Preguntas{
     public int getNivel(){
         return nivel;
     }
+    public ArrayList<String> listaRespuestas(){
+        ArrayList<String> lresp = listaRespuestas;
+        lresp.add(respuestaCorrecta);
+        return lresp;
+    }
 //Metodo toString
     public String toString(){
         return "enunciado: "+enunciado+"\nnivel: "+nivel;
+    }
+    
+    //Metodo equals
+    public boolean equals(Object o){
+        if (o == this) return true;
+        if (o != null && getClass() == o.getClass()){
+            Preguntas p = (Preguntas) o;
+            return enunciado.equals(p.getEnunciado());
+        } else {
+            return false;
+        }
     }
 }

@@ -10,7 +10,7 @@ public class Juego{
     private ArrayList<Paralelo> paralelos;
     private static int NumPreNivel;
     private Estudiante participante;
-    private static Estudiante comApoyo
+    private static Estudiante comApoyo;
     private ArrayList<Preguntas> preguntas;
     private static String fecha;
     private static int nivelAlcanzado;
@@ -39,8 +39,9 @@ public class Juego{
         while(x!=10){
             System.out.println("Ingrese el número de preguntas por nivel:");
             int num = sc.nextInt();
+            sc.nextLine();
             preguntas = m.getPreguntas();
-            int cantidadNiveles = m.getCantidadNiveles;
+            int cantidadNiveles = m.getCantidadNiveles();
             int a = 0;
             int i = 1;
 
@@ -50,7 +51,7 @@ public class Juego{
                     a = pre.getNivel();
 
                     if(a == i){
-                        b++1
+                        b+=1;
                         if(num>b){
                             i = cantidadNiveles;
                         }
@@ -75,57 +76,45 @@ public class Juego{
     }
 
     public Estudiante ayudante(String matriculaEstudiante){
-        ArrayList<Materia> materias = termino.getMaterias();
-        for (Materia m: materias){
-            for(Paralelo p0: m.getParalelos()){
-                for(Estudiante e: p0.getEstudiantes()) {
-                    if (e.getMatricula().equals(matriculaEstudiante)) {
-                        return e;
-                    }
-
-                }
+        for(Estudiante e: paralelo.getEstudiantes()) {
+            if (e.getMatricula().equals(matriculaEstudiante)) {
+                return e;
             }
-
-        }
-        return null;
+        } return null;
     }
 
 
     public Estudiante participante(String matriculaEstudiante){
-        ArrayList<Materia> materias = termino.getMaterias();
-        for (Materia m: materias){
-            for(Paralelo p0: m.getParalelos()){
-                for(Estudiante e: p0.getEstudiantes()) {
-                    if (e.getMatricula().equals(matriculaEstudiante)) {
-                        return e;
-                    }
-
-                }
+        for(Estudiante e: paralelo.getEstudiantes()) {
+            if (e.getMatricula().equals(matriculaEstudiante)) {
+                return e;
             }
-
-        }
-        return null;
+        } return null;
     }
 
-
-    public void empezarJuego(Materia m) {
-        ArrayList<Preguntas> preguntasJuego = m.getPreguntas(); // Obtener las preguntas seleccionadas para el juego
+    
+    public void empezarJuego() {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Preguntas> preguntasJuego = materia.getPreguntas(); // Obtener las preguntas seleccionadas para el juego
         int numPreguntas = preguntasJuego.size();
         int preguntaActual = 0;
 
         while (preguntaActual < numPreguntas) {
             Preguntas pregunta = preguntasJuego.get(preguntaActual);
-
+            
             // Verificar si el nivel de la pregunta es menor o igual al nivel alcanzado
             if (pregunta.getNivel() <= nivelAlcanzado) {
+                ArrayList<String> lresp = pregunta.listaRespuestas();
                 System.out.println(pregunta.getEnunciado());
-
+                System.out.println(lresp);
+                
+                
                 // Obtener la respuesta ingresada por el participante
-                System.out.print("Ingrese la letra de la respuesta (A, B, C o D), o * para usar un comodín: ");
-                String respuestaIngresada = sc.nextLine().toUpperCase();
-
+                System.out.print("Ingrese la letra de la respuesta (1, 2, 3 o 4), o 0 para usar un comodín: ");
+                int numResp = sc.nextInt();
+                String respuestaIngresada = lresp.get(numResp-1);
                 // Verificar si se usará un comodín
-                if (respuestaIngresada.equals("*")) {
+                if (numResp == 0) {
                     mostrarComodinesDisponibles(); // Mostrar comodines disponibles
                     continue; // Volver a mostrar la misma pregunta
                 }
@@ -160,12 +149,12 @@ public class Juego{
 
 
     //revisar implementacion
-    pubic void mostrarComodinesDisponibles(){
-        for(int j; j < 3; j++){
+    public void mostrarComodinesDisponibles(){
+        Scanner sc = new Scanner(System.in);
+        for(int j=0; j < 3; j++){
             if(discomodines[j] == 1){
-                System.out.println((j + 1) + comodines[j] + "");
+                System.out.println(comodines[j] + "");
             }
-
         }
 
         if(discomodines[0] == 0 && discomodines[1] == 0 && discomodines[2] == 0){
@@ -175,7 +164,6 @@ public class Juego{
             int opcion = sc.nextInt();
             sc.nextLine();
             if(opcion == 1){
-
                 if(discomodines[0] == 1){
                     comodinesUtilizados += 1;
                     discomodines[0] = 0;
@@ -208,12 +196,12 @@ public class Juego{
     }
 //getters:
     public String getCodigoMateria(){
-        return materia.getCodigo;
+        return materia.getCodigo();
     }
     public String getNumParalelo(){
-        return paralelo.getNumero;
+        return paralelo.getNumero();
     }
-    public Termino getTermino(){
+    public static Termino getTermino(){
         return termino;
     }
     public String getFecha(){
