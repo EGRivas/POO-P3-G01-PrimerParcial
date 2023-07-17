@@ -136,6 +136,7 @@ public class Juego{
             }
 
             preguntaActual++;
+            cantidadPreguntasContestadas = preguntaActual;
         }
 
         // Si el estudiante ha llegado hasta aquí, ha respondido correctamente todas las preguntas
@@ -154,10 +155,43 @@ public class Juego{
     pubic void mostrarComodinesDisponibles(){
         for(int j; j < 3; j++){
             if(discomodines[j] == 1){
-                System.out.println(comodines[j]);
+                System.out.println((j + 1) + comodines[j] + "");
             }
 
         }
+
+        if(discomodines[0] == 0 && discomodines[1] == 0 && discomodines[2] == 0){
+            System.out.println("Te has quedado sin comodines");
+        }else{
+            System.out.println("Ingrese 1, 2, o 3, para usar un comodin: ");
+            int opcion = sc.nextInt();
+            sc.nextLine();
+            if(opcion == 1){
+                if(discomodines[0] == 1){
+                    discomodines[0] = 0;
+                    System.out.println("Has usado tu comodin 1!");
+                } else {
+                    System.out.println("Comodin 1 ya fue utilizado anteriormente.");
+                }
+            } else if (opcion == 2) {
+                if(discomodines[1] == 1){
+                    discomodines[1] = 0;
+                    System.out.println("Has usado tu comodin 2!");
+                } else {
+                    System.out.println("Comodin 2 ya fue utilizado anteriormente.");
+                }
+            } else if (opcion == 3) {
+                if(discomodines[2] == 1){
+                    discomodines[2] = 0;
+                    System.out.println("Has usado tu comodin 3!");
+                } else {
+                    System.out.println("Comodin 3 ya fue utilizado anteriormente.");
+                }
+            } else {
+                System.out.println("Opción inválida. Debes ingresar 1, 2 o 3 para usar un comodín.");
+            }
+        }
+
     }
 //getters:
     public String getCodigoMateria(){
@@ -187,4 +221,9 @@ public class Juego{
     public int getPremio(){
         return premio;
     }
+
+    public String reporte(){
+        return "cantidad de preguntas contestadas: " + cantidadPreguntasContestadas + ", comodines utilizados: " + discomodines + ", Premio: " + premio;
+    }
 }
+
