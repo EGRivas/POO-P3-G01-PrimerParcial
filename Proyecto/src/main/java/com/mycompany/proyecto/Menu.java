@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Menu{
 //Lista con los términos:
     public static ArrayList<Termino> terminos = new ArrayList<>();
-    private static ArrayList<Juego> juegos = new ArrayList<>();;
-    private static ArrayList<Estudiante> estudiantes = new ArrayList<>();;
-
+    private static ArrayList<Juego> juegos = new ArrayList<>();
+    private static ArrayList<Estudiante> estudiantes = new ArrayList<>();
+    
 //Métodos:
     
     public static void administrarTerminosAcademicos(){
@@ -330,11 +330,11 @@ public class Menu{
     }
     
     public static void menuInicial(){
-        ArrayList<Materia> materias;
-        ArrayList<Paralelo> paralelos;
         Materia materiaEsc = null;
         Paralelo paraleloEsc = null;
         Estudiante estudiante = null;
+        ArrayList<Materia> materias;
+        ArrayList<Paralelo> paralelos;
         Scanner sc = new Scanner(System.in);
         int num = 0;
         while(num != 4){
@@ -370,6 +370,7 @@ public class Menu{
                 for(Estudiante e: estudiantes){
                     if(e.getMatricula().equals(matricula)){
                         estudiante = e;
+                        System.out.println(estudiante);
                     }
                 } 
                 Juego j = new Juego(materiaEsc, paraleloEsc, estudiante);

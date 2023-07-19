@@ -29,4 +29,7 @@ public class Estudiante {
     public String getCorreoInst(){
         return correoInst;
     }
+    public String toString(){
+        return nombre+", "+matricula+", "+correoInst;
+    }
 }

@@ -36,7 +36,9 @@ public class Preguntas{
     }
     public ArrayList<String> listaRespuestas(){
         ArrayList<String> lresp = listaRespuestas;
-        lresp.add(respuestaCorrecta);
+        if(listaRespuestas.size()==3){
+            lresp.add(respuestaCorrecta);
+        }
         return lresp;
     }
 //Metodo toString

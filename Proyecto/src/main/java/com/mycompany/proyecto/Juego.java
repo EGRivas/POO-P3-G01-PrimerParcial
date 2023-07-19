@@ -9,15 +9,15 @@ public class Juego{
     private Materia materia;
     private Paralelo paralelo;
     private ArrayList<Paralelo> paralelos;
-    private static int NumPreNivel;
+    private int NumPreNivel;
     private Estudiante participante;
-    private static Estudiante comApoyo;
+    private Estudiante comApoyo;
     private ArrayList<Preguntas> preguntas;
-    private static String fecha;
-    private static int nivelAlcanzado;
-    private static int cantidadPreguntasContestadas;
-    private static int comodinesUtilizados;
-    private static int premio;
+    private String fecha;
+    private int nivelAlcanzado;
+    private int cantidadPreguntasContestadas;
+    private int comodinesUtilizados;
+    private int premio;
 
     //agrego disponibilidad de comodines como variable de instancia
 
@@ -91,18 +91,39 @@ public class Juego{
 
     
     public void empezarJuego() {
-        System.out.println("hola");
         Scanner sc = new Scanner(System.in);
-        ArrayList<Preguntas> preguntasJuego = materia.getPreguntas(); // Obtener las preguntas seleccionadas para el juego
-        int numPreguntas = preguntasJuego.size();
+        
+        int numPreguntas = preguntas.size();
         int preguntaActual = 0;
 
         while (preguntaActual < numPreguntas) {
-            System.out.println("hola");
-            Preguntas pregunta = preguntasJuego.get(preguntaActual);
-            
+            Preguntas pregunta = preguntas.get(preguntaActual);
             // Verificar si el nivel de la pregunta es menor o igual al nivel alcanzado
-            if (pregunta.getNivel() <= nivelAlcanzado) {
+            ArrayList<String> lresp = pregunta.listaRespuestas();
+            System.out.println(pregunta.getEnunciado());
+            System.out.println(lresp);
+            // Obtener la respuesta ingresada por el participante
+            System.out.print("Ingrese la letra de la respuesta (1, 2, 3 o 4), o 0 para usar un comodín: ");
+            int numResp = sc.nextInt();
+            // Verificar si se usará un comodín
+            if (numResp == 0) {
+                mostrarComodinesDisponibles(); // Mostrar comodines disponibles
+                continue; // Volver a mostrar la misma pregunta
+            }
+            String respuestaIngresada = lresp.get(numResp-1);
+            // Verificar la respuesta ingresada
+            boolean respuestaCorrecta = pregunta.indicarRespuestaCorrecta(respuestaIngresada);
+            if (!respuestaCorrecta) {
+                System.out.println("Respuesta incorrecta. Fin del juego.");
+                return; // Terminar el juego si la respuesta es incorrecta
+            }
+            preguntaActual++;
+            cantidadPreguntasContestadas++;
+            nivelAlcanzado = pregunta.getNivel();
+            // La pregunta supera el nivel alcanzado, se salta a la siguiente pregunta
+            preguntaActual++;
+            
+            /*if (pregunta.getNivel() <= nivelAlcanzado) {
                 ArrayList<String> lresp = pregunta.listaRespuestas();
                 System.out.println(pregunta.getEnunciado());
                 System.out.println(lresp);
@@ -130,7 +151,7 @@ public class Juego{
             } else {
                 // La pregunta supera el nivel alcanzado, se salta a la siguiente pregunta
                 preguntaActual++;
-            }
+            }*/
         }
 
         // Si el estudiante ha llegado hasta aquí, ha respondido correctamente todas las preguntas

@@ -18,11 +18,11 @@ public class Proyecto {
         
         //Creacion de estudiantes para la prueba
         ArrayList<Estudiante> lEstudiantesP03 = new ArrayList<>();
-        Estudiante e1 = new Estudiante("202108643","AGUILAR TINOCO JEAN CARLOS","jcaguila@espol.edu.ec");
-        Estudiante e2 = new Estudiante("202111928","AMORETTI SANCHEZ JUAN CARLOS","jamorett@espol.edu.ec");
-        Estudiante e3 = new Estudiante("202111589","RIVAS PINCAY EMMANUEL GERARDO","egrivas@espol.edu.ec");
-        Estudiante e4 = new Estudiante("202113056","BARBERAN GALLARDO MELISSA ESTEFANIA","melesbar@espol.edu.ec");
-        Estudiante e5 = new Estudiante("202208260","ZARUMA GAME JOSHUA ANDRES","jazaruma@espol.edu.ec");
+        Estudiante e1 = new Estudiante("AGUILAR TINOCO JEAN CARLOS","202108643","jcaguila@espol.edu.ec");
+        Estudiante e2 = new Estudiante("AMORETTI SANCHEZ JUAN CARLOS","202111928","jamorett@espol.edu.ec");
+        Estudiante e3 = new Estudiante("RIVAS PINCAY EMMANUEL GERARDO","202111589","egrivas@espol.edu.ec");
+        Estudiante e4 = new Estudiante("BARBERAN GALLARDO MELISSA ESTEFANIA","202113056","melesbar@espol.edu.ec");
+        Estudiante e5 = new Estudiante("ZARUMA GAME JOSHUA ANDRES","202208260","jazaruma@espol.edu.ec");
         lEstudiantesP03.add(e1);
         lEstudiantesP03.add(e2);
         lEstudiantesP03.add(e3);
