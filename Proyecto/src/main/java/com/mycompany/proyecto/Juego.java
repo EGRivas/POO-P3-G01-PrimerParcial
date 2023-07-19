@@ -36,7 +36,7 @@ public class Juego{
         fecha = sc.nextLine();
         int x = 0;
         int c = 0;
-        while(x!=10){
+        /*while(x!=10){
             System.out.println("Ingrese el número de preguntas por nivel:");
             int num = sc.nextInt();
             sc.nextLine();
@@ -44,35 +44,32 @@ public class Juego{
             int cantidadNiveles = m.getCantidadNiveles();
             int a = 0;
             int i = 1;
-
             while( i != cantidadNiveles) {
                 int b = 0;
                 for(Preguntas pre: preguntas){
                     a = pre.getNivel();
-
                     if(a == i){
                         b+=1;
                         if(num>b){
                             i = cantidadNiveles;
                         }
-
                     }
-
                 }
                 i = i+1;
-                c = c+1;
-            }
+                c = c+1;}
             if(c == cantidadNiveles){
                 NumPreNivel = num;
                 x = 10;
             }
-
-        }
+        }*/
+        System.out.println("Ingrese el número de preguntas por nivel:");
+        int num = sc.nextInt();
+        sc.nextLine();
+        
     }
 //Método:
-    public static void setTermino(String anio, String periodo){
-        termino.setAnio(anio);
-        termino.setPeriodo(periodo);
+    public static void setTermino(Termino t){
+        termino = t;
     }
 
     public Estudiante ayudante(String matriculaEstudiante){
@@ -143,8 +140,6 @@ public class Juego{
         sc.nextLine();
 
         System.out.println("¡Felicidades! Has ganado: " + premio);
-
-        sc.close();
     }
 
 
@@ -191,7 +186,6 @@ public class Juego{
                 System.out.println("Opción inválida. Debes ingresar 1, 2 o 3 para usar un comodín.");
             }
         }
-        sc.close();
 
     }
 //getters:

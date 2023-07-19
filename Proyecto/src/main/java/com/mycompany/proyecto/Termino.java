@@ -40,6 +40,9 @@ public class Termino {
     public void actuMaterias(ArrayList<Materia> m){
         materias = m;
     }
+    public void actuMaterias(Materia m){
+        materias.add(m);
+    }
     //metodo equals
     public boolean equals(Object o){
         if (o == this) return true;

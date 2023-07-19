@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Menu{
 //Lista con los términos:
-    private static ArrayList<Termino> terminos;
-    private static ArrayList<Juego> juegos;
-    private static ArrayList<Estudiante> estudiantes;
+    public static ArrayList<Termino> terminos = new ArrayList<>();
+    private static ArrayList<Juego> juegos = new ArrayList<>();;
+    private static ArrayList<Estudiante> estudiantes = new ArrayList<>();;
 
 //Métodos:
     
@@ -54,15 +54,22 @@ public class Menu{
                     }
                 }
             }
-            else{
+            else if (num == 3){
                 System.out.println("Indique el año para el juego:");
                 String a = sc.nextLine();
                 System.out.println("Indique el periodo para el juego:");
                 String p = sc.nextLine();
-                Juego.setTermino(a,p);
+                Termino t = new Termino(a,p);
+                for (Termino t1: terminos){
+                    if (t1.equals(t)){
+                        Juego.setTermino(t);
+                    }
+                }
+            }
+            else {
+                System.out.println("Regresando");
             }
         }
-        sc.close();
     }
     public static void administrarMateriasParalelos(){
         ArrayList<Materia> materias;
@@ -154,7 +161,7 @@ public class Menu{
                     }
                 }
             } 
-            else{
+            else if (num == 4){
                 System.out.println("Ingrese codigo de materia: ");
                 String codigoM = sc.nextLine();
                 System.out.println("Ingrese el año del termino donde quiere eliminar paralelo: ");
@@ -182,8 +189,10 @@ public class Menu{
                     }
                 }
             }
+            else{
+                System.out.println("Regresando");
+            }
         }
-        sc.close();
     }
     
     public static void administrarPreguntas(){
@@ -261,19 +270,7 @@ public class Menu{
                 }
               }
               
-            } else{
-                /*System.out.println("Ingrese el enunciado de la pregunta a eliminar:");
-                String e = sc.nextLine();
-                for(Materia m:materias){
-                    preguntas = m.getPreguntas();
-                    for (Preguntas p : preguntas){
-                        if(e.equals(p.getEnunciado())){
-                            int h = preguntas.indexOf(p);
-                            preguntas.remove(h);
-                        }
-                    }
-                }
-                */
+            } else if (num == 3){
                 System.out.println("Ingrese codigo de materia: ");
                 String codigoM = sc.nextLine();
                 System.out.println("Ingrese el año del termino donde quiere eliminar preguntas: ");
@@ -304,8 +301,10 @@ public class Menu{
                     }
                 }
             }
+            else {
+                System.out.println("Regresando");
+            }
         }
-        sc.close();
     }
     
     public static void configuracion(){
@@ -321,11 +320,13 @@ public class Menu{
             else if (num == 2){
                 administrarMateriasParalelos();
             }
-            else{
+            else if (num == 3){
                 administrarPreguntas();
             }
+            else{
+                System.out.println("Regresando");
+            }
         }
-        sc.close();
     }
     
     public static void menuInicial(){
@@ -376,7 +377,7 @@ public class Menu{
                 juegos.add(j);
 
             }
-            else{
+            else if (num == 3){
                 System.out.println("Ingrese el codigo de la materia:");
                 String codMat = sc.nextLine();
                 System.out.println("Ingrese el numero del paralelo:");
@@ -395,6 +396,9 @@ public class Menu{
                     System.out.println("Premio: " + juego.getPremio());
                     }
                 }
+            }
+            else{
+                System.out.println("Saliendo");
             }
         }
         sc.close();
