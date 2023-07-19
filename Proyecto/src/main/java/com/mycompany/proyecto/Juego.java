@@ -1,6 +1,7 @@
 package com.mycompany.proyecto;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Collections;
 
 public class Juego{
 //Atributos:
@@ -34,38 +35,37 @@ public class Juego{
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese la fecha en formato DD-MM-AA:");
         fecha = sc.nextLine();
-        int x = 0;
-        int c = 0;
-        /*while(x!=10){
-            System.out.println("Ingrese el número de preguntas por nivel:");
-            int num = sc.nextInt();
-            sc.nextLine();
-            preguntas = m.getPreguntas();
-            int cantidadNiveles = m.getCantidadNiveles();
-            int a = 0;
-            int i = 1;
-            while( i != cantidadNiveles) {
-                int b = 0;
-                for(Preguntas pre: preguntas){
-                    a = pre.getNivel();
-                    if(a == i){
-                        b+=1;
-                        if(num>b){
-                            i = cantidadNiveles;
-                        }
-                    }
-                }
-                i = i+1;
-                c = c+1;}
-            if(c == cantidadNiveles){
-                NumPreNivel = num;
-                x = 10;
-            }
-        }*/
-        System.out.println("Ingrese el número de preguntas por nivel:");
-        int num = sc.nextInt();
-        sc.nextLine();
+        preguntas = m.getPreguntas(); //se obtienen las preguntas segun la materia ingresada
+        //para validar el numero de preguntas por nivel
         
+        boolean valido = false;
+        while(valido == false){
+            int c = 0; //contador externo
+            System.out.println("Ingrese el número de preguntas por nivel:");
+            int num = sc.nextInt(); //numero de preguntas por nivel
+            sc.nextLine();
+            //se hace una lista de enteros con el numero de niveles que hay en cada pregunta
+            ArrayList<Integer> niveles = new ArrayList<>(); 
+            for (Preguntas preg: preguntas){
+                niveles.add(preg.getNivel()); //agregando el numero de nivel de la pregunta a la lista "niveles"
+            }
+            int maxNivel = Collections.max(niveles); //el nivel maximo encontrado en las preguntas
+            for (int x = 1;x<=maxNivel;x++){ //primer lazo for que itera del 1 al nivelMaximo con un contador interno
+                int c1 = 0;
+                for(int n : niveles){ //se recorre la lista de niveles
+                    if(n==x){ //se compara que el nivel sea igual a la iteracion del lazo for (el nivel analizado)
+                       c1++; //se ira aumentando este contador interno hasta que se lea toda la lista
+                    }//En la primera iteracion (x=1), si hay 3 preguntas de nivel 1, este contador da como resultado 3
+                }
+                if(c1>=num){//se aumenta el contador externo si el interno supera o es igual a num
+                    c++;//es decir, siendo num = 3
+                    //si hay 4 preguntas en el nivel 1, 4>=3 es true, por lo que queda validado el nivel 1
+                }//si hay 2 preguntas en el nivel 2, 2>=3 es false, por lo que el nivel 2 no es validado y c no aumenta
+            }
+            if(c==maxNivel){//se valida que todos los niveles hayan aumentado, por lo que el maximo debe ser igual a c
+                valido = true;
+            }
+        }
     }
 //Método:
     public static void setTermino(Termino t){
@@ -91,12 +91,14 @@ public class Juego{
 
     
     public void empezarJuego() {
+        System.out.println("hola");
         Scanner sc = new Scanner(System.in);
         ArrayList<Preguntas> preguntasJuego = materia.getPreguntas(); // Obtener las preguntas seleccionadas para el juego
         int numPreguntas = preguntasJuego.size();
         int preguntaActual = 0;
 
         while (preguntaActual < numPreguntas) {
+            System.out.println("hola");
             Preguntas pregunta = preguntasJuego.get(preguntaActual);
             
             // Verificar si el nivel de la pregunta es menor o igual al nivel alcanzado
