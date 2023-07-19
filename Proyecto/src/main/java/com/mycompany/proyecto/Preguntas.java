@@ -19,6 +19,9 @@ public class Preguntas{
     }
     public Preguntas(String e){
         enunciado = e; //para verificar que una pregunta sea igual a otra en el metodo de remover preguntas
+        nivel = 0;
+        listaRespuestas = new ArrayList<>();
+        respuestaCorrecta = null;
     }
 
 //Métodos:
@@ -51,7 +54,7 @@ public class Preguntas{
         if (o == this) return true;
         if (o != null && getClass() == o.getClass()){
             Preguntas p = (Preguntas) o;
-            return enunciado.equals(p.getEnunciado());
+            return enunciado.equals(p.enunciado);
         } else {
             return false;
         }

@@ -109,7 +109,7 @@ public class Proyecto {
         Termino term1 = new Termino("2023","1");
         term1.actuMaterias(POO);
         Menu.terminos.add(term1);
-        //setteando por defecto el termino actual
+        //setteando por defecto el termino actual 2023-1
         Juego.setTermino(term1);
         Menu.menuInicial();
         

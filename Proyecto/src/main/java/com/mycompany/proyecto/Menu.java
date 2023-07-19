@@ -1,6 +1,7 @@
 package com.mycompany.proyecto;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Menu{
 //Lista con los términos:
@@ -12,11 +13,7 @@ public class Menu{
     
     public static void administrarTerminosAcademicos(){
         //listado de terminos academicos
-        System.out.print("[");
-        for (Termino c : terminos){
-            System.out.println(c);
-        }
-        System.out.println("]");
+        System.out.println(terminos);
         
         Scanner sc = new Scanner(System.in);
         int num = 0;
@@ -29,12 +26,13 @@ public class Menu{
                 String a = sc.nextLine();
                 System.out.println("Indique el periodo:");
                 String p = sc.nextLine();
-                Termino t = new Termino(a,p);
-                int tAnio = Integer.parseInt(t.getAnio());
+                Termino t1 = new Termino(a,p);
+                int tAnio = Integer.parseInt(t1.getAnio());
                 
-                for (Termino t1: terminos){
-                    if (!t1.equals(t) && tAnio >= 2023){
-                        terminos.add(t);
+                for (int x = 0;x<terminos.size();x++){
+                    if (!(terminos.get(x)).equals(t1) && tAnio >= 2023){
+                        terminos.add(t1);
+                        System.out.println(terminos);
                     }
                 }
             }
@@ -87,7 +85,7 @@ public class Menu{
         Scanner sc = new Scanner(System.in);
         int num = 0;
         while (num!=5){
-            System.out.println("Escoja la opción que desee\n 1. Ingresar Materia\n 2. Editar Materia\n 3.Agregar Paralelo\n 4. Eliminar Paralelo\n 5. Regresar\n Ingrese el número de su opción:");
+            System.out.println("Escoja la opción que desee\n 1. Ingresar Materia\n 2. Editar Materia\n 3. Agregar Paralelo\n 4. Eliminar Paralelo\n 5. Regresar\n Ingrese el número de su opción:");
             num = sc.nextInt();
             sc.nextLine();
             if (num == 1){
@@ -148,7 +146,7 @@ public class Menu{
                 Termino t1 = new Termino(anioT,perT);
                 for (Termino t: terminos){
                     if(t.equals(t1)){
-                        materias = t1.getMaterias();
+                        materias = t.getMaterias();
                         for (Materia m : materias){
                             if (m.getCodigo().equals(codigoM)){
                                 System.out.println("Ingrese numero de paralelo: ");
@@ -171,7 +169,7 @@ public class Menu{
                 Termino t1 = new Termino(anioT,perT);
                 for (Termino t: terminos){
                     if(t.equals(t1)){
-                        materias = t1.getMaterias();
+                        materias = t.getMaterias();
                         for (Materia m : materias){
                             if (m.getCodigo().equals(codigoM)){
                                 System.out.println("Ingrese numero de paralelo: ");
@@ -200,7 +198,7 @@ public class Menu{
         int num = 0;
         Scanner sc = new Scanner(System.in);
         while (num != 4){
-            System.out.println("Escoja la opción que desee\n 1. Administrar términos académicos\n 2. Administrar materias y paralelos\n 3. Administrar preguntas\n 4. Regresar\n Ingrese el número de su opción:");
+            System.out.println("Escoja la opción que desee\n 1. Visualizar preguntas\n 2. Agregar pregunta\n 3. Eliminar pregunta\n 4. Regresar\n Ingrese el número de su opción:");
             num = sc.nextInt();
             sc.nextLine();
             if (num == 1){
@@ -213,7 +211,7 @@ public class Menu{
                 Termino t1 = new Termino(anioT,perT);
                 for (Termino t: terminos){
                     if(t.equals(t1)){
-                        materias = t1.getMaterias();
+                        materias = t.getMaterias();
                         for (Materia m : materias){
                             if(m.getCodigo().equals(codigoM)){
                                 ArrayList<Preguntas> lpreguntas = m.getPreguntas();
@@ -227,9 +225,9 @@ public class Menu{
             } else if (num==2){
                 System.out.println("Ingrese codigo de materia: ");
                 String codigoM = sc.nextLine();
-                System.out.println("Ingrese el año del termino donde quiere ver las preguntas: ");
+                System.out.println("Ingrese el año del termino donde quiere agregar las preguntas: ");
                 String anioT = sc.nextLine();
-                System.out.println("Ingrese el periodo del termino donde quiere ver las preguntas: ");
+                System.out.println("Ingrese el periodo del termino donde quiere agregar las preguntas: ");
                 String perT = sc.nextLine();
                 Termino t1 = new Termino(anioT,perT);
                 
@@ -280,7 +278,7 @@ public class Menu{
                 Termino t1 = new Termino(anioT,perT);
                 for (Termino t: terminos){
                     if(t.equals(t1)){
-                        materias = t1.getMaterias();
+                        materias = t.getMaterias();
                         for (Materia m : materias){
                             if(m.getCodigo().equals(codigoM)){
                                 ArrayList<Preguntas> lpreguntas = m.getPreguntas();
@@ -290,11 +288,10 @@ public class Menu{
                                 System.out.println("Ingrese el enunciado de la pregunta a eliminar: ");
                                 String e = sc.nextLine();
                                 Preguntas enun = new Preguntas(e);
-                                for(Preguntas p:lpreguntas){
-                                    if(enun.equals(p)){
-                                        int h = lpreguntas.indexOf(enun);
-                                        lpreguntas.remove(h);
-                                    }
+                                for(int x = 0; x < lpreguntas.size(); x++){
+                                    if(enun.equals(lpreguntas.get(x))){
+                                        lpreguntas.remove(x);
+                                    } 
                                 }
                           }
                         }
