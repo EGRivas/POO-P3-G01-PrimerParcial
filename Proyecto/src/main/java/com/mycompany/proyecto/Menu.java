@@ -389,7 +389,7 @@ public class Menu{
                     System.out.println("Fecha del juego: " + juego.getFecha());
                     System.out.println("Participante: " + juego.getParticipante());
                     System.out.println("Nivel máximmo alcanzado: " + juego.getNivelAlcanzado());
-                    System.out.println("Canridad preguntas utilizadas: " + juego.getCantidadPreguntasContestadas());
+                    System.out.println("Cantidad preguntas utilizadas: " + juego.getCantidadPreguntasContestadas());
                     System.out.println("Número de comodines utilizados: " + juego.getComodinesUtilizados());
                     System.out.println("Premio: " + juego.getPremio());
                     }

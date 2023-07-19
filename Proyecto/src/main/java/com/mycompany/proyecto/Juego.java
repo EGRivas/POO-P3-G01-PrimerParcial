@@ -9,13 +9,14 @@ public class Juego{
     private Materia materia;
     private Paralelo paralelo;
     private ArrayList<Paralelo> paralelos;
-    private int NumPreNivel;
+    private int numPreNivel;
     private Estudiante participante;
     private Estudiante comApoyo;
     private ArrayList<Preguntas> preguntas;
     private String fecha;
     private int nivelAlcanzado;
-    private int cantidadPreguntasContestadas;
+    private int nivelMax;
+    private int cantidadPreguntasContestadas = 0;
     private int comodinesUtilizados;
     private int premio;
 
@@ -33,6 +34,8 @@ public class Juego{
         paralelo = p;
         participante = par;
         Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese la matricula del estudiante de apoyo");
+        comApoyo = ayudante(sc.nextLine());
         System.out.println("Ingrese la fecha en formato DD-MM-AA:");
         fecha = sc.nextLine();
         preguntas = m.getPreguntas(); //se obtienen las preguntas segun la materia ingresada
@@ -64,6 +67,8 @@ public class Juego{
             }
             if(c==maxNivel){//se valida que todos los niveles hayan aumentado, por lo que el maximo debe ser igual a c
                 valido = true;
+                numPreNivel = num;
+                nivelMax = maxNivel; //nivel maximo de preguntas
             }
         }
     }
@@ -92,77 +97,47 @@ public class Juego{
     
     public void empezarJuego() {
         Scanner sc = new Scanner(System.in);
-        
-        int numPreguntas = preguntas.size();
-        int preguntaActual = 0;
-
-        while (preguntaActual < numPreguntas) {
-            Preguntas pregunta = preguntas.get(preguntaActual);
-            // Verificar si el nivel de la pregunta es menor o igual al nivel alcanzado
-            ArrayList<String> lresp = pregunta.listaRespuestas();
-            System.out.println(pregunta.getEnunciado());
-            System.out.println(lresp);
-            // Obtener la respuesta ingresada por el participante
-            System.out.print("Ingrese la letra de la respuesta (1, 2, 3 o 4), o 0 para usar un comodín: ");
-            int numResp = sc.nextInt();
-            // Verificar si se usará un comodín
-            if (numResp == 0) {
-                mostrarComodinesDisponibles(); // Mostrar comodines disponibles
-                continue; // Volver a mostrar la misma pregunta
-            }
-            String respuestaIngresada = lresp.get(numResp-1);
-            // Verificar la respuesta ingresada
-            boolean respuestaCorrecta = pregunta.indicarRespuestaCorrecta(respuestaIngresada);
-            if (!respuestaCorrecta) {
-                System.out.println("Respuesta incorrecta. Fin del juego.");
-                return; // Terminar el juego si la respuesta es incorrecta
-            }
-            preguntaActual++;
-            cantidadPreguntasContestadas++;
-            nivelAlcanzado = pregunta.getNivel();
-            // La pregunta supera el nivel alcanzado, se salta a la siguiente pregunta
-            preguntaActual++;
-            
-            /*if (pregunta.getNivel() <= nivelAlcanzado) {
-                ArrayList<String> lresp = pregunta.listaRespuestas();
-                System.out.println(pregunta.getEnunciado());
-                System.out.println(lresp);
-                
-                
-                // Obtener la respuesta ingresada por el participante
-                System.out.print("Ingrese la letra de la respuesta (1, 2, 3 o 4), o 0 para usar un comodín: ");
-                int numResp = sc.nextInt();
-                String respuestaIngresada = lresp.get(numResp-1);
-                // Verificar si se usará un comodín
-                if (numResp == 0) {
-                    mostrarComodinesDisponibles(); // Mostrar comodines disponibles
-                    continue; // Volver a mostrar la misma pregunta
+        ArrayList<Integer> niveles = new ArrayList<>(); 
+        niveles.add(0);
+        for(int x = 1;x<=nivelMax;x++){
+            int cont = 0;
+            for(Preguntas p: preguntas){
+                if(cont<numPreNivel && p.getNivel()==x){// Verificar si el nivel de la pregunta es menor o igual al nivel alcanzado
+                    ArrayList<String> lresp = p.listaRespuestas();
+                    System.out.println(p.getEnunciado());
+                    System.out.println(lresp);
+                    // Obtener la respuesta ingresada por el participante
+                    System.out.print("Ingrese la letra de la respuesta (1, 2, 3 o 4), o 0 para usar un comodín: ");
+                    int numResp = sc.nextInt();
+                    // Verificar si se usará un comodín
+                    if (numResp == 0) {
+                        mostrarComodinesDisponibles(); // Mostrar comodines disponibles
+                        continue; // Volver a mostrar la misma pregunta
+                    }
+                    String respuestaIngresada = lresp.get(numResp-1);
+                    // Verificar la respuesta ingresada
+                    boolean respuestaCorrecta = p.indicarRespuestaCorrecta(respuestaIngresada);
+                    if (!respuestaCorrecta) {
+                        System.out.println("Respuesta incorrecta. Fin del juego.");
+                        nivelAlcanzado = Collections.max(niveles);
+                        return; // Terminar el juego si la respuesta es incorrecta
+                    }
+                    niveles.add(p.getNivel());
+                    cont++;
+                    cantidadPreguntasContestadas++;
                 }
-
-                // Verificar la respuesta ingresada
-                boolean respuestaCorrecta = pregunta.indicarRespuestaCorrecta(respuestaIngresada);
-                if (!respuestaCorrecta) {
-                    System.out.println("Respuesta incorrecta. Fin del juego.");
-                    return; // Terminar el juego si la respuesta es incorrecta
-                }
-                preguntaActual++;
-                cantidadPreguntasContestadas++;
-                nivelAlcanzado = cantidadPreguntasContestadas / NumPreNivel;
-            } else {
-                // La pregunta supera el nivel alcanzado, se salta a la siguiente pregunta
-                preguntaActual++;
-            }*/
+            }
         }
-
+        nivelAlcanzado = Collections.max(niveles);
         // Si el estudiante ha llegado hasta aquí, ha respondido correctamente todas las preguntas
         System.out.println("¡Felicitaciones! Has respondido correctamente a todas las preguntas.");
-
+        
         // Obtener el premio ingresado por el profesor
-        System.out.print("Ingrese el premio que has ganado: ");
+        System.out.print("Ingrese el premio que ha ganado el estudiante: ");
         premio = sc.nextInt();
         sc.nextLine();
 
-        System.out.println("¡Felicidades! Has ganado: " + premio);
+        System.out.println("¡Felicidades! Ha ganado: " + premio);
     }
 
 
