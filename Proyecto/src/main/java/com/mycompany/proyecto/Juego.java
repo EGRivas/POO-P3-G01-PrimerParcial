@@ -96,6 +96,11 @@ public class Juego{
 
     
     public void empezarJuego() {
+        ArrayList<String> answer = new ArrayList<>();
+        answer.add("A");
+        answer.add("B");
+        answer.add("C");
+        answer.add("D");
         Scanner sc = new Scanner(System.in);
         ArrayList<Integer> niveles = new ArrayList<>(); 
         niveles.add(0);
@@ -105,16 +110,18 @@ public class Juego{
                 if(cont<numPreNivel && p.getNivel()==x){// Verificar si el nivel de la pregunta es menor o igual al nivel alcanzado
                     ArrayList<String> lresp = p.listaRespuestas();
                     System.out.println(p.getEnunciado());
+                    Collections.shuffle(lresp);
                     System.out.println(lresp);
                     // Obtener la respuesta ingresada por el participante
-                    System.out.print("Ingrese la letra de la respuesta (1, 2, 3 o 4), o 0 para usar un comodín: ");
-                    int numResp = sc.nextInt();
+                    System.out.print("Ingrese la letra de la respuesta (A, B, C o D), o * para usar un comodín: ");
+                    String resp = sc.nextLine();
                     // Verificar si se usará un comodín
-                    if (numResp == 0) {
+                    if (resp.equals("*")) {
                         mostrarComodinesDisponibles(); // Mostrar comodines disponibles
                         continue; // Volver a mostrar la misma pregunta
                     }
-                    String respuestaIngresada = lresp.get(numResp-1);
+                    int numResp = answer.indexOf(resp);
+                    String respuestaIngresada = lresp.get(numResp);
                     // Verificar la respuesta ingresada
                     boolean respuestaCorrecta = p.indicarRespuestaCorrecta(respuestaIngresada);
                     if (!respuestaCorrecta) {

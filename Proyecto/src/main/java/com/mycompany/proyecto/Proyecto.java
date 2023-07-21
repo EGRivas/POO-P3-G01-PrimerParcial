@@ -14,7 +14,9 @@ public class Proyecto {
     public static void main(String[] args)
     {
         ArrayList<Termino> listaTermino = new ArrayList<>();
-        //Paralelo 3 | POO | termino 2023-1
+        //Estos son los parametros a utilizar
+        //Se crearon 3 preguntas para 3 niveles, del 1 al 3 en la materia POO del termino 2023 periodo 1
+        //Paralelo 3 | POO | CCPG1052 | termino 2023-1
         
         //Creacion de estudiantes para la prueba
         ArrayList<Estudiante> lEstudiantesP03 = new ArrayList<>();
@@ -28,10 +30,12 @@ public class Proyecto {
         lEstudiantesP03.add(e3);
         lEstudiantesP03.add(e4);
         lEstudiantesP03.add(e5);
+        //cuando se pida una matricula del paralelo 3, se usa las escritas anteriormente
         
-        //Paralelo 3 con los estudiantes ya creados
+        //Paralelo 3 con los estudiantes ya creados, este sera el paralelo de prueba, solo se ingresa el numero
         Paralelo paralelo3 = new Paralelo("3",lEstudiantesP03);
         
+        //las preguntas se acceden por medio del enunciado si es que se desea eliminarlas
         //preguntas nivel 1
         ArrayList<String> resp1 = new ArrayList<>();
         resp1.add("append()");
@@ -112,6 +116,5 @@ public class Proyecto {
         //setteando por defecto el termino actual 2023-1
         Juego.setTermino(term1);
         Menu.menuInicial();
-        
     }
 }
