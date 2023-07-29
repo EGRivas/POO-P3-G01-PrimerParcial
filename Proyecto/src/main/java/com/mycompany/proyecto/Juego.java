@@ -118,7 +118,11 @@ public class Juego{
                     // Verificar si se usará un comodín
                     if (resp.equals("*")) {
                         mostrarComodinesDisponibles(); // Mostrar comodines disponibles
-                        continue; // Volver a mostrar la misma pregunta
+                        // Volver a mostrar la misma pregunta
+                        System.out.println(p.getEnunciado());
+                        System.out.println(lresp);
+                        System.out.print("Ingrese la letra de la respuesta (A, B, C o D), o * para usar un comodín: ");
+                        resp = sc.nextLine();
                     }
                     int numResp = answer.indexOf(resp);
                     String respuestaIngresada = lresp.get(numResp);
