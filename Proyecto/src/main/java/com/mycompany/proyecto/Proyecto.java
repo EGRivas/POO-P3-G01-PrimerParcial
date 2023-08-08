@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class Proyecto {
     public static void main(String[] args)
     {
+        //hola
         ArrayList<Termino> listaTermino = new ArrayList<>();
         //Estos son los parametros a utilizar
         //Se crearon 3 preguntas para 3 niveles, del 1 al 3 en la materia POO del termino 2023 periodo 1
