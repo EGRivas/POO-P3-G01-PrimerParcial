@@ -38,6 +38,10 @@ public class Materia{
         this.codigo = codigo;
         this.nombre = nombre;
     }
+    public void editarMateria(String nombre,int cantidadNiveles){
+        this.cantidadNiveles = cantidadNiveles;
+        this.nombre = nombre;
+    }
     public void setListaParalelo(ArrayList<Paralelo> p){
         paralelos = p;
     }

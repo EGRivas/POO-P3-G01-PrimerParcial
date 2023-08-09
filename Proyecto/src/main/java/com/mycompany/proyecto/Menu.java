@@ -21,19 +21,25 @@ public class Menu{
             System.out.println("Escoja la opción que desee\n 1. Ingresar Término\n 2. Editar Término\n 3. Configurar término para el juego\n 4. Salir\n Ingrese el número de su opción:");
             num = sc.nextInt();
             sc.nextLine();
-            if (num == 1){
+            if (num == 1) {
                 System.out.println("Indique el año:");
                 String a = sc.nextLine();
                 System.out.println("Indique el periodo:");
                 String p = sc.nextLine();
-                Termino t1 = new Termino(a,p);
-                int tAnio = Integer.parseInt(t1.getAnio());
-                
-                for (int x = 0;x<terminos.size();x++){
-                    if (!(terminos.get(x)).equals(t1) && tAnio >= 2023){
+
+                int tAnio = Integer.parseInt(a);
+                int currentYear = 2023; // Cambiar a la fecha actual
+
+                if (tAnio >= currentYear) {
+                    Termino t1 = new Termino(a, p);
+                    if (!terminos.contains(t1)) {
                         terminos.add(t1);
                         System.out.println(terminos);
+                    } else {
+                        System.out.println("El término ya existe en la lista.");
                     }
+                } else {
+                    System.out.println("No se pueden ingresar términos pasados.");
                 }
             }
             else if (num == 2){
@@ -111,31 +117,24 @@ public class Menu{
 
                 
             } else if (num == 2){
-                System.out.println("Ingrese codigo de materia: ");
+                System.out.println("Ingrese el código de la materia a editar: ");
                 String codigoM = sc.nextLine();
-                System.out.println("Ingrese el año del termino donde quiere editar la materia: ");
-                String anioT = sc.nextLine();
-                System.out.println("Ingrese el periodo del termino donde quiere editar la materia: ");
-                String perT = sc.nextLine();
-                Termino t1 = new Termino(anioT,perT);
                 for (Termino t: terminos){
-                    if(t.equals(t1)){
-                        materias = t1.getMaterias();
-                        for (Materia m : materias){
-                            if (m.getCodigo().equals(codigoM)){
-                                System.out.println("Materia a editar: "+m);
-                                System.out.println("Ingrese nombre a cambiar: ");
-                                String nombreM = sc.nextLine();
-                                System.out.println("Ingrese cantidad de niveles a cambiar: ");
-                                int nivelesM = sc.nextInt();
-                                m.editarMateria(codigoM,nombreM);
-                                m.editarMateria(nivelesM);
-                                t.actuMaterias(materias);
-                            }
+                    materias = t.getMaterias();
+                    for (Materia m : materias){
+                        if (m.getCodigo().equals(codigoM)){
+                            System.out.println("Materia a editar: "+m);
+                            System.out.println("Ingrese el nuevo nombre: ");
+                            String nombreM = sc.nextLine();
+                            System.out.println("Ingrese la nueva cantidad de niveles: ");
+                            int nivelesM = sc.nextInt();
+                            sc.nextLine();
+                            m.editarMateria(nombreM, nivelesM);
+                            t.actuMaterias(materias);
                         }
                     }
                 }
-                
+
             } else if (num == 3){
                 System.out.println("Ingrese codigo de materia: ");
                 String codigoM = sc.nextLine();
@@ -153,12 +152,11 @@ public class Menu{
                                 String numeroP = sc.nextLine();
                                 Paralelo pa = new Paralelo(numeroP);
                                 m.aggParalelo(pa);
-                                t.actuMaterias(materias);
                             }
                         }
                     }
                 }
-            } 
+            }
             else if (num == 4){
                 System.out.println("Ingrese codigo de materia: ");
                 String codigoM = sc.nextLine();
@@ -166,27 +164,36 @@ public class Menu{
                 String anioT = sc.nextLine();
                 System.out.println("Ingrese el periodo del termino donde quiere eliminar paralelo: ");
                 String perT = sc.nextLine();
-                Termino t1 = new Termino(anioT,perT);
-                for (Termino t: terminos){
-                    if(t.equals(t1)){
+                Termino t1 = new Termino(anioT, perT);
+                for (Termino t : terminos) {
+                    if (t.equals(t1)) {
                         materias = t.getMaterias();
-                        for (Materia m : materias){
-                            if (m.getCodigo().equals(codigoM)){
+                        for (Materia m : materias) {
+                            if (m.getCodigo().equals(codigoM)) {
                                 System.out.println("Ingrese numero de paralelo: ");
                                 String numeroP = sc.nextLine();
                                 paralelos = m.getParalelos();
-                                for(Paralelo p:paralelos){
-                                    if(numeroP.equals(p.getNumero())){
-                                        int x = paralelos.indexOf(p);
-                                        paralelos.remove(x);
-                                        t.actuMaterias(materias);
+                                Paralelo paraleloEncontrado = null;
+                                for (Paralelo p : paralelos) {
+                                    if (numeroP.equals(p.getNumero())) {
+                                        paraleloEncontrado = p;
+                                        break;
                                     }
+                                }
+                                if (paraleloEncontrado != null) {
+                                    paralelos.remove(paraleloEncontrado);
+                                    t.actuMaterias(materias);
+                                    System.out.println("Paralelo eliminado exitosamente.");
+                                } else {
+                                    System.out.println("No se encontró el paralelo especificado.");
                                 }
                             }
                         }
                     }
                 }
             }
+
+
             else{
                 System.out.println("Regresando");
             }
