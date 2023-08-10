@@ -124,7 +124,7 @@ public class Juego{
                     String resp = sc.nextLine();
 
                     if (resp.equals("*")) {
-                        mostrarComodinesDisponibles();
+                        mostrarComodinesDisponibles(lresp, p, niveles);
 
                         System.out.println(p.getEnunciado());
 
@@ -163,7 +163,7 @@ public class Juego{
     }
 
     //revisar implementacion
-    public void mostrarComodinesDisponibles(){
+    public void mostrarComodinesDisponibles(ArrayList<String> lresp, Preguntas p, ArrayList<Integer> niveles){
         Scanner sc = new Scanner(System.in);
         for(int j=0; j < 3; j++){
             if(discomodines[j] == 1){
@@ -181,6 +181,7 @@ public class Juego{
                 if(discomodines[0] == 1){
                     comodinesUtilizados += 1;
                     discomodines[0] = 0;
+                    comodinCompanero(lresp, p, niveles);
                     System.out.println("Has usado tu comodin 1!");
                 } else {
                     System.out.println("Comodin 1 ya fue utilizado anteriormente.");
@@ -189,6 +190,7 @@ public class Juego{
                 if(discomodines[1] == 1){
                     comodinesUtilizados += 1;
                     discomodines[1] = 0;
+                    comodin5050(lresp, p, niveles);
                     System.out.println("Has usado tu comodin 2!");
                 } else {
                     System.out.println("Comodin 2 ya fue utilizado anteriormente.");
@@ -207,7 +209,67 @@ public class Juego{
         }
 
     }
-//getters:
+    public void comodinCompanero(ArrayList<String> lresp, Preguntas p, ArrayList<Integer> niveles) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println(comApoyo.getNombre() + ", ¿cuál es tu respuesta?");
+
+        // Mostrar las opciones de respuesta sin la posibilidad de usar un comodín
+        for (int i = 0; i < lresp.size(); i++) {
+            System.out.println((char)('A' + i) + ") " + lresp.get(i));
+        }
+
+        String resp = sc.nextLine();
+        int numResp = resp.charAt(0) - 'A';
+        String respuestaIngresada = lresp.get(numResp);
+
+        boolean respuestaCorrecta = p.indicarRespuestaCorrecta(respuestaIngresada);
+        if (!respuestaCorrecta) {
+            nivelAlcanzado = Collections.max(niveles);
+            return;
+        }
+
+        niveles.add(p.getNivel());
+        cantidadPreguntasContestadas++;
+    }
+    public void comodin5050(ArrayList<String> lresp, Preguntas p, ArrayList<Integer> niveles) {
+        ArrayList<String> respuestas = p.listaRespuestas();
+
+        // Filtrar las respuestas incorrectas
+        ArrayList<String> respuestasIncorrectas = new ArrayList<>();
+        for (String respuesta : respuestas) {
+            if (!p.indicarRespuestaCorrecta(respuesta)) {
+                respuestasIncorrectas.add(respuesta);
+            }
+        }
+
+        // Mantener una respuesta incorrecta y una correcta
+        ArrayList<String> respuestasRestantes = new ArrayList<>();
+        respuestasRestantes.add(respuestasIncorrectas.get(0));
+        respuestasRestantes.add(p.getRespuestaCorrecta());
+
+        // Mostrar las respuestas restantes
+        System.out.println("Respuesta correcta y una incorrecta:");
+        System.out.println("A) " + respuestasRestantes.get(0));
+        System.out.println("B) " + respuestasRestantes.get(1));
+
+        // Solicitar la nueva respuesta del usuario
+        Scanner sc = new Scanner(System.in);
+        //System.out.print("Ingrese la letra de la respuesta (A o B): ");
+        String resp = sc.nextLine();
+
+        int numResp = resp.equals("A") ? 0 : 1;
+        String respuestaIngresada = respuestasRestantes.get(numResp);
+        boolean respuestaCorrecta = p.indicarRespuestaCorrecta(respuestaIngresada);
+        if (!respuestaCorrecta) {
+            System.out.println("Respuesta incorrecta. Fin del juego.");
+            nivelAlcanzado = Collections.max(niveles);
+            return;
+        }
+        niveles.add(p.getNivel());
+        cantidadPreguntasContestadas++;
+    }
+
+    //getters:
     public String getCodigoMateria(){
         return materia.getCodigo();
     }

@@ -37,6 +37,9 @@ public class Preguntas{
     public int getNivel(){
         return nivel;
     }
+    public String getRespuestaCorrecta(){
+        return respuestaCorrecta;
+    }
     public ArrayList<String> listaRespuestas(){
         ArrayList<String> lresp = listaRespuestas;
         if(listaRespuestas.size()==3){
@@ -59,4 +62,5 @@ public class Preguntas{
             return false;
         }
     }
+
 }
