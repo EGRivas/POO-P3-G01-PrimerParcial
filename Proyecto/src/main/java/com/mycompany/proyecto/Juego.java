@@ -94,7 +94,7 @@ public class Juego{
         } return null;
     }
 
-    
+
     public void empezarJuego() {
         ArrayList<String> answer = new ArrayList<>();
         answer.add("A");
@@ -102,36 +102,48 @@ public class Juego{
         answer.add("C");
         answer.add("D");
         Scanner sc = new Scanner(System.in);
-        ArrayList<Integer> niveles = new ArrayList<>(); 
+        ArrayList<Integer> niveles = new ArrayList<>();
         niveles.add(0);
-        for(int x = 1;x<=nivelMax;x++){
+
+        ArrayList<Preguntas> preguntasDisponibles = new ArrayList<>(preguntas);
+
+        for (int x = 1; x <= nivelMax; x++) {
             int cont = 0;
-            for(Preguntas p: preguntas){
-                if(cont<numPreNivel && p.getNivel()==x){// Verificar si el nivel de la pregunta es menor o igual al nivel alcanzado
+            Collections.shuffle(preguntasDisponibles); // Barajar las preguntas disponibles
+            for (Preguntas p : preguntasDisponibles) {
+                if (cont < numPreNivel && p.getNivel() == x) {
                     ArrayList<String> lresp = p.listaRespuestas();
                     System.out.println(p.getEnunciado());
-                    Collections.shuffle(lresp);
-                    System.out.println(lresp);
-                    // Obtener la respuesta ingresada por el participante
+
+                    // Mostrar las opciones de respuesta con etiquetas A), B), C), D)
+                    for (int i = 0; i < lresp.size(); i++) {
+                        System.out.println(answer.get(i) + ") " + lresp.get(i));
+                    }
+
                     System.out.print("Ingrese la letra de la respuesta (A, B, C o D), o * para usar un comodín: ");
                     String resp = sc.nextLine();
-                    // Verificar si se usará un comodín
+
                     if (resp.equals("*")) {
-                        mostrarComodinesDisponibles(); // Mostrar comodines disponibles
-                        // Volver a mostrar la misma pregunta
+                        mostrarComodinesDisponibles();
+
                         System.out.println(p.getEnunciado());
-                        System.out.println(lresp);
+
+                        // Mostrar las opciones de respuesta con etiquetas A), B), C), D) después de usar un comodín
+                        for (int i = 0; i < lresp.size(); i++) {
+                            System.out.println(answer.get(i) + ") " + lresp.get(i));
+                        }
+
                         System.out.print("Ingrese la letra de la respuesta (A, B, C o D), o * para usar un comodín: ");
                         resp = sc.nextLine();
                     }
+
                     int numResp = answer.indexOf(resp);
                     String respuestaIngresada = lresp.get(numResp);
-                    // Verificar la respuesta ingresada
                     boolean respuestaCorrecta = p.indicarRespuestaCorrecta(respuestaIngresada);
                     if (!respuestaCorrecta) {
                         System.out.println("Respuesta incorrecta. Fin del juego.");
                         nivelAlcanzado = Collections.max(niveles);
-                        return; // Terminar el juego si la respuesta es incorrecta
+                        return;
                     }
                     niveles.add(p.getNivel());
                     cont++;
@@ -139,18 +151,16 @@ public class Juego{
                 }
             }
         }
+
         nivelAlcanzado = Collections.max(niveles);
-        // Si el estudiante ha llegado hasta aquí, ha respondido correctamente todas las preguntas
         System.out.println("¡Felicitaciones! Has respondido correctamente a todas las preguntas.");
-        
-        // Obtener el premio ingresado por el profesor
+
         System.out.print("Ingrese el premio que ha ganado el estudiante: ");
         premio = sc.nextInt();
         sc.nextLine();
 
         System.out.println("¡Felicidades! Ha ganado: " + premio);
     }
-
 
     //revisar implementacion
     public void mostrarComodinesDisponibles(){

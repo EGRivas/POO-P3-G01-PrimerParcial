@@ -199,7 +199,7 @@ public class Menu{
             }
         }
     }
-    
+
     public static void administrarPreguntas(){
         ArrayList<Materia> materias;
         int num = 0;
@@ -211,96 +211,78 @@ public class Menu{
             if (num == 1){
                 System.out.println("Ingrese codigo de materia: ");
                 String codigoM = sc.nextLine();
-                System.out.println("Ingrese el año del termino donde quiere ver las preguntas: ");
-                String anioT = sc.nextLine();
-                System.out.println("Ingrese el periodo del termino donde quiere ver las preguntas: ");
-                String perT = sc.nextLine();
-                Termino t1 = new Termino(anioT,perT);
                 for (Termino t: terminos){
-                    if(t.equals(t1)){
-                        materias = t.getMaterias();
-                        for (Materia m : materias){
-                            if(m.getCodigo().equals(codigoM)){
-                                ArrayList<Preguntas> lpreguntas = m.getPreguntas();
-                                for(Preguntas p:lpreguntas){
-                                    System.out.println(p);
-                             }
-                          }
+                    materias = t.getMaterias();
+                    for (Materia m : materias){
+                        if(m.getCodigo().equals(codigoM)){
+                            ArrayList<Preguntas> lpreguntas = m.getPreguntas();
+                            for(Preguntas p:lpreguntas){
+                                System.out.println(p);
+                            }
                         }
                     }
                 }
-            } else if (num==2){
+            } else if (num == 2){
                 System.out.println("Ingrese codigo de materia: ");
                 String codigoM = sc.nextLine();
-                System.out.println("Ingrese el año del termino donde quiere agregar las preguntas: ");
-                String anioT = sc.nextLine();
-                System.out.println("Ingrese el periodo del termino donde quiere agregar las preguntas: ");
-                String perT = sc.nextLine();
-                Termino t1 = new Termino(anioT,perT);
-                
+
                 ArrayList<String> lresp = new ArrayList<String>();
                 for (Termino t: terminos){
                     materias = t.getMaterias();
                     for (Materia m : materias){
-                    if(m.getCodigo().equals(codigoM)){
-                        System.out.println("Nivel maximo para esta materia: "+m.getCantidadNiveles());
-                        System.out.println("Ingrese el enunciado de la pregunta: ");
-                        String enun = sc.nextLine();
-                        System.out.println("Ingrese un nivel entre el rango (1,"+m.getCantidadNiveles()+")");
-                        int niv = sc.nextInt();
-                        sc.nextLine();
-                        while(niv<1 || niv>m.getCantidadNiveles()){
+                        if(m.getCodigo().equals(codigoM)){
+                            System.out.println("Nivel maximo para esta materia: "+m.getCantidadNiveles());
+                            System.out.println("Ingrese el enunciado de la pregunta: ");
+                            String enun = sc.nextLine();
                             System.out.println("Ingrese un nivel entre el rango (1,"+m.getCantidadNiveles()+")");
-                            niv = sc.nextInt();
+                            int niv = sc.nextInt();
                             sc.nextLine();
+                            while(niv<1 || niv>m.getCantidadNiveles()){
+                                System.out.println("Ingrese un nivel entre el rango (1,"+m.getCantidadNiveles()+")");
+                                niv = sc.nextInt();
+                                sc.nextLine();
+                            }
+                            System.out.println("Ingrese respuesta correcta: ");
+                            String respCorr = sc.nextLine();
+
+                            System.out.println("Ingrese posible respuesta 1: ");
+                            String resp1 = sc.nextLine();
+                            lresp.add(resp1);
+                            System.out.println("Ingrese posible respuesta 2: ");
+                            String resp2 = sc.nextLine();
+                            lresp.add(resp2);
+                            System.out.println("Ingrese posible respuesta 3: ");
+                            String resp3 = sc.nextLine();
+                            lresp.add(resp3);
+
+                            Preguntas preguntaNueva = new Preguntas(enun,niv,lresp,respCorr);
+                            m.agregarPregunta(preguntaNueva);
+
+                            t.actuMaterias(materias);
                         }
-                        System.out.println("Ingrese respuesta correcta: ");
-                        String respCorr = sc.nextLine();
-                        
-                        System.out.println("Ingrese posible respuesta 1: ");
-                        String resp1 = sc.nextLine();
-                        lresp.add(resp1);
-                        System.out.println("Ingrese posible respuesta 2: ");
-                        String resp2 = sc.nextLine();
-                        lresp.add(resp2);
-                        System.out.println("Ingrese posible respuesta 3: ");
-                        String resp3 = sc.nextLine();
-                        lresp.add(resp3);
-                        
-                        Preguntas preguntaNueva = new Preguntas(enun,niv,lresp,respCorr);
-                        m.agregarPregunta(preguntaNueva);
-                        
-                        t.actuMaterias(materias);
                     }
                 }
-              }
-              
-            } else if (num == 3){
+            }else if (num == 3) {
                 System.out.println("Ingrese codigo de materia: ");
                 String codigoM = sc.nextLine();
-                System.out.println("Ingrese el año del termino donde quiere eliminar preguntas: ");
-                String anioT = sc.nextLine();
-                System.out.println("Ingrese el periodo del termino donde quiere eliminar preguntas: ");
-                String perT = sc.nextLine();
-                Termino t1 = new Termino(anioT,perT);
-                for (Termino t: terminos){
-                    if(t.equals(t1)){
-                        materias = t.getMaterias();
-                        for (Materia m : materias){
-                            if(m.getCodigo().equals(codigoM)){
-                                ArrayList<Preguntas> lpreguntas = m.getPreguntas();
-                                for(Preguntas p:lpreguntas){
-                                    System.out.println(p);
-                                }
-                                System.out.println("Ingrese el enunciado de la pregunta a eliminar: ");
-                                String e = sc.nextLine();
-                                Preguntas enun = new Preguntas(e);
-                                for(int x = 0; x < lpreguntas.size(); x++){
-                                    if(enun.equals(lpreguntas.get(x))){
-                                        lpreguntas.remove(x);
-                                    } 
-                                }
-                          }
+                for (Termino t : terminos) {
+                    materias = t.getMaterias();
+                    for (Materia m : materias) {
+                        if (m.getCodigo().equals(codigoM)) {
+                            ArrayList<Preguntas> lpreguntas = m.getPreguntas();
+                            System.out.println("Lista de preguntas:");
+                            for (int i = 0; i < lpreguntas.size(); i++) {
+                                System.out.println(i + ". " + lpreguntas.get(i));
+                            }
+                            System.out.println("Ingrese el número de la pregunta a eliminar:");
+                            int preguntaIndex = sc.nextInt();
+                            sc.nextLine();
+                            if (preguntaIndex >= 0 && preguntaIndex < lpreguntas.size()) {
+                                lpreguntas.remove(preguntaIndex);
+                                System.out.println("Pregunta eliminada exitosamente.");
+                            } else {
+                                System.out.println("Número de pregunta inválido.");
+                            }
                         }
                     }
                 }
@@ -310,7 +292,6 @@ public class Menu{
             }
         }
     }
-    
     public static void configuracion(){
         int num = 0;
         Scanner sc = new Scanner(System.in);
@@ -361,26 +342,35 @@ public class Menu{
                         materiaEsc = m1;
                         paralelos = materiaEsc.getParalelos();
                         for(Paralelo p1 : paralelos){
-                          if(p1.getNumero().equals(p)){
-                              paraleloEsc = p1;
+                            if(p1.getNumero().equals(p)){
+                                paraleloEsc = p1;
                             }
                         }
                     }
                 }
-                
-                System.out.println("Ingrese el número de matrícula del participante");
-                String matricula = sc.nextLine();
-                estudiantes = paraleloEsc.getEstudiantes();
-                for(Estudiante e: estudiantes){
-                    if(e.getMatricula().equals(matricula)){
-                        estudiante = e;
-                        System.out.println(estudiante);
+
+                System.out.println("¿Desea seleccionar el estudiante participante? (Sí/No):");
+                String seleccion = sc.nextLine().toLowerCase();
+                if (seleccion.equals("sí") || seleccion.equals("si")) {
+                    System.out.println("Ingrese el número de matrícula del participante");
+                    String matricula = sc.nextLine();
+                    estudiantes = paraleloEsc.getEstudiantes();
+                    for(Estudiante e: estudiantes){
+                        if(e.getMatricula().equals(matricula)){
+                            estudiante = e;
+                            System.out.println(estudiante);
+                        }
                     }
-                } 
+                } else {
+                    estudiantes = paraleloEsc.getEstudiantes();
+                    int randomIndex = (int) (Math.random() * estudiantes.size());
+                    estudiante = estudiantes.get(randomIndex);
+                    System.out.println("Se ha seleccionado aleatoriamente el estudiante participante: " + estudiante);
+                }
+
                 Juego j = new Juego(materiaEsc, paraleloEsc, estudiante);
                 j.empezarJuego();
                 juegos.add(j);
-
             }
             else if (num == 3){
                 System.out.println("Ingrese el codigo de la materia:");
