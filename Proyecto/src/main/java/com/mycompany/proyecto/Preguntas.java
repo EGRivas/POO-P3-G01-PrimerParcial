@@ -1,7 +1,8 @@
 package com.mycompany.proyecto;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Preguntas{
+public class Preguntas implements Serializable{
 
 //Atributos:
     private String enunciado;

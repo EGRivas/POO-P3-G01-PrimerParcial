@@ -1,7 +1,8 @@
 package com.mycompany.proyecto;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Paralelo {
+public class Paralelo implements Serializable{
 //Atribbutos:
     private String numero;
     private ArrayList<Estudiante> estudiantes;

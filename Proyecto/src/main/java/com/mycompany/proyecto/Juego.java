@@ -1,9 +1,10 @@
 package com.mycompany.proyecto;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Collections;
 
-public class Juego{
+public class Juego implements Serializable{
 //Atributos:
     private static Termino termino;
     private Materia materia;

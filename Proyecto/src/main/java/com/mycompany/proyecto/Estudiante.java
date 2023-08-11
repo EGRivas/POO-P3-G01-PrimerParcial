@@ -4,11 +4,13 @@
  */
 package com.mycompany.proyecto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Administrador
  */
-public class Estudiante {
+public class Estudiante implements Serializable{
     //variables de instancia
     private String nombre;
     private String matricula;

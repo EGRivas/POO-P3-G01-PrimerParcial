@@ -318,8 +318,11 @@ public class Menu{
         Materia materiaEsc = null;
         Paralelo paraleloEsc = null;
         Estudiante estudiante = null;
-        ArrayList<Materia> materias;
-        ArrayList<Paralelo> paralelos;
+        ArrayList<Materia> materias = Archivar.readSubjects();
+        ArrayList<Paralelo> paralelos = Archivar.readParalelos();
+        terminos = Archivar.readTerms();
+        juegos = Archivar.readGames();
+        estudiantes = Archivar.readStudents();
         Scanner sc = new Scanner(System.in);
         int num = 0;
         while(num != 4){
@@ -394,6 +397,12 @@ public class Menu{
             }
             else{
                 System.out.println("Saliendo");
+                Archivar.writeTerms(terminos);
+                Archivar.writeGames(juegos);
+                Archivar.writeStudents(estudiantes);
+                Archivar.writeMaterias(materias);
+                Archivar.writeParalelos(paralelos);
+
             }
         }
         sc.close();
